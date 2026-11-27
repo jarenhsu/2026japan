@@ -19,6 +19,219 @@
 .flight-label{color:#93664d;font-size:.78rem;letter-spacing:.08em;font-weight:800}.flight-route{display:flex;align-items:center;gap:15px;font-weight:800;font-size:1.8rem;color:var(--forest);font-family:Georgia,serif;margin:12px 0 16px}.flight-arrow{font-size:1rem;font-family:inherit;letter-spacing:-.3em;color:#b0bba9;flex:1;min-width:32px;text-align:center}.flight-card p{font-size:.9rem;margin:9px 0;color:#46594e}.flight-keyline{background:#f5ece3;padding:17px 20px;border-left:4px solid #bc855f;border-radius:0 9px 9px 0;font-size:.91rem;margin-bottom:27px}.flight-subheading{font-size:1.25rem;margin:31px 0 13px}.flight-table{width:100%;border-collapse:collapse;font-size:.86rem}.flight-table th{text-align:left;background:#e7efea;color:#24473e;padding:13px 10px;border-bottom:2px solid #a0b7ac}.flight-table td{padding:14px 10px;vertical-align:top;border-bottom:1px solid #e8e7df}.flight-table tr:nth-child(even){background:#f9f8f3}.flight-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.flight-detail{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:20px}.flight-detail>b{font-size:1rem;color:#224a3d}.flight-detail p{font-size:.85rem;margin-top:9px}.flight-detail span{display:block;font-size:.8rem;color:#758077;border-top:1px solid #e5e7df;margin-top:12px;padding-top:11px}.flight-price{background:#eef2ed;padding:19px 22px;border-radius:10px}.flight-price p{font-size:.88rem;margin-top:7px}.flight-links{font-size:.81rem;margin:22px 0}.flight-links a{text-decoration:underline;text-decoration-color:#adc2b6;font-weight:700}
 @media(max-width:780px){.flight-cards,.flight-detail-grid{grid-template-columns:1fr}.flight-route{font-size:1.35rem}.flight-table{min-width:600px}}
 @media print{.flight-card,.flight-detail{page-break-inside:avoid}.flight-detail-grid,.flight-cards{grid-template-columns:1fr 1fr}.flight-table{font-size:.77rem}}
+
+/* --- Glassmorphism & Map-First redesign override --- */
+:root{
+  --gm-bg:#0b111b;
+  --gm-bg-2:#111827;
+  --gm-panel:rgba(255,255,255,.72);
+  --gm-panel-strong:rgba(255,255,255,.78);
+  --gm-border:rgba(255,255,255,.34);
+  --gm-text:#0f172a;
+  --gm-muted:#475569;
+  --gm-soft:#e2e8f0;
+  --gm-accent:#90caf9;
+  --gm-accent-2:#c4b5fd;
+  --gm-accent-3:#fbcfe8;
+  --gm-shadow:0 20px 60px rgba(15,23,42,.22), 0 8px 24px rgba(15,23,42,.12);
+}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(circle at top, rgba(147,197,253,.10), transparent 20%),
+    radial-gradient(circle at 85% 15%, rgba(196,181,253,.10), transparent 20%),
+    linear-gradient(180deg,#0b111b 0%, #0f1727 42%, #111827 100%) !important;
+  color:var(--gm-text);
+}
+.editor-layout{display:block !important}
+.editor-side,.editor-cover,#trip-dashboard,.reminder-grid{display:none !important}
+.dashboard-shell{max-width:none !important;width:100% !important;padding:0 24px 72px !important}
+.dashboard-shell > .bento,
+.dashboard-shell > .page-tools,
+.dashboard-shell > .guide-group,
+.dashboard-shell > #personal-prep,
+.dashboard-shell > footer{max-width:1440px;margin-left:auto;margin-right:auto}
+.dashboard-shell > .bento{margin-top:28px}
+#map-first{
+  position:relative;min-height:100vh;border-radius:36px;overflow:hidden;margin:20px auto 28px;
+  max-width:calc(100vw - 48px);box-shadow:var(--gm-shadow);
+}
+#map-first .map-stage{
+  position:relative;min-height:100vh;padding:26px;background:
+    radial-gradient(circle at 20% 20%, rgba(148,163,184,.12), transparent 20%),
+    linear-gradient(180deg, rgba(9,14,23,.16), rgba(9,14,23,.48));
+}
+#map-first .map-bg{
+  position:absolute;inset:0;background:
+   linear-gradient(0deg, rgba(255,255,255,.02) 1px, transparent 1px),
+   linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px),
+   radial-gradient(circle at 20% 18%, rgba(255,255,255,.08), transparent 22%),
+   radial-gradient(circle at 76% 70%, rgba(255,255,255,.08), transparent 24%),
+   linear-gradient(180deg, #0d1420 0%, #0e1723 50%, #0b1018 100%);
+  background-size:46px 46px,46px 46px,100% 100%,100% 100%,100% 100%;
+}
+#map-first .map-bg::before{
+  content:'';position:absolute;inset:3.8% 3.2%;border-radius:30px;pointer-events:none;
+  background:
+    radial-gradient(circle at 13% 27%, rgba(110,231,183,.18), transparent 20%),
+    radial-gradient(circle at 66% 25%, rgba(125,211,252,.14), transparent 18%),
+    radial-gradient(circle at 57% 72%, rgba(248,250,252,.10), transparent 22%),
+    linear-gradient(135deg, rgba(255,255,255,.03), rgba(255,255,255,0));
+  border:1px solid rgba(255,255,255,.06);
+}
+#map-first .map-svg{position:absolute;inset:0;width:100%;height:100%;opacity:.9}
+#map-first .map-header{
+  position:relative;z-index:4;display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:18px
+}
+.map-brand{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+.map-kicker{display:inline-flex;align-items:center;gap:10px;padding:12px 14px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px);color:#e5eef9;font-size:.85rem;letter-spacing:.18em;text-transform:uppercase}
+.map-kicker .dot{width:8px;height:8px;border-radius:50%;background:#8be4ba;box-shadow:0 0 0 4px rgba(139,228,186,.16)}
+.map-copy h1{margin:14px 0 8px;color:#f8fafc;font-size:clamp(2.4rem,5vw,4.6rem);font-weight:800;letter-spacing:-.04em;line-height:1.02}
+.map-copy p{margin:0;color:#bfcedf;max-width:620px;font-size:1rem;line-height:1.7}
+.glass-panel{
+  background:var(--gm-panel);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid var(--gm-border);box-shadow:var(--gm-shadow);border-radius:28px;
+}
+.glass-panel::before{content:'';position:absolute;inset:1px;border-radius:27px;pointer-events:none;border:1px solid rgba(255,255,255,.34);mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;padding:1px;opacity:.55}
+.capsule-panel{position:absolute;top:24px;right:24px;z-index:5;width:min(420px,calc(100% - 48px));padding:16px 18px 18px}
+.capsule-top{display:flex;justify-content:space-between;gap:14px;align-items:center}
+.avatar-stack{display:flex;align-items:center}
+.avatar{width:42px;height:42px;border-radius:999px;display:grid;place-items:center;font-weight:800;color:#fff;border:2px solid rgba(255,255,255,.8);margin-left:-10px;box-shadow:0 6px 16px rgba(15,23,42,.18)}
+.avatar:first-child{margin-left:0}
+.avatar.j{background:linear-gradient(135deg,#60a5fa,#2563eb)}
+.avatar.k{background:linear-gradient(135deg,#a78bfa,#7c3aed)}
+.capsule-status{display:flex;align-items:center;gap:10px;color:var(--gm-text);font-weight:600}
+.status-light{width:10px;height:10px;border-radius:50%;background:#10b981;box-shadow:0 0 0 5px rgba(16,185,129,.15)}
+.capsule-label{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:#64748b}
+.capsule-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.glass-btn,.capsule-actions button,.capsule-actions a,.map-mini-links a{
+  appearance:none;border:0;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border-radius:999px;padding:11px 16px;font-size:.93rem;font-weight:700;transition:all .3s ease;cursor:pointer
+}
+.glass-btn.primary{background:#0f172a;color:#fff;box-shadow:0 10px 22px rgba(15,23,42,.16)}
+.glass-btn.secondary{background:rgba(255,255,255,.56);color:#0f172a;border:1px solid rgba(255,255,255,.5)}
+.glass-btn:hover,.capsule-actions button:hover,.capsule-actions a:hover,.map-mini-links a:hover{transform:translateY(-1px);filter:brightness(1.02)}
+.timeline-panel{position:relative;z-index:4;width:min(420px,100%);padding:22px 20px 20px;margin-top:26px;min-height:calc(100vh - 190px)}
+.timeline-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:16px}
+.timeline-head h2{margin:0;font-size:1.3rem;color:var(--gm-text)}
+.timeline-head p{margin:4px 0 0;color:var(--gm-muted);font-size:.93rem}
+.map-mini-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.map-mini-links a{padding:8px 12px;font-size:.85rem;background:rgba(255,255,255,.48);border:1px solid rgba(255,255,255,.4);color:#1e293b}
+.glass-day-tabs{display:flex;gap:8px;overflow:auto;padding-bottom:4px;margin:4px 0 18px;scrollbar-width:none}
+.glass-day-tabs::-webkit-scrollbar{display:none}
+.glass-day-tab{border:1px solid rgba(255,255,255,.42);background:rgba(255,255,255,.42);border-radius:16px;padding:10px 12px;min-width:82px;transition:all .3s ease;color:#334155}
+.glass-day-tab b{display:block;font-size:.94rem}
+.glass-day-tab span{display:block;font-size:.75rem;opacity:.72;margin-top:3px}
+.glass-day-tab.active{background:linear-gradient(135deg, rgba(15,23,42,.92), rgba(30,41,59,.86));color:#fff;box-shadow:0 10px 24px rgba(15,23,42,.22)}
+.glass-day-summary{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:end;padding:0 2px 10px}
+.glass-day-summary .tag{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 11px;font-size:.76rem;font-weight:700;letter-spacing:.04em;background:rgba(15,23,42,.08);color:#334155}
+.glass-day-summary h3{margin:10px 0 4px;font-size:1.28rem;color:#0f172a}
+.glass-day-summary p{margin:0;color:#475569;line-height:1.65;font-size:.92rem}
+.day-total{font-weight:800;color:#0f172a;text-align:right}
+.day-total small{display:block;font-weight:600;color:#64748b;font-size:.76rem;letter-spacing:.06em;text-transform:uppercase}
+.timeline-list{margin-top:12px;display:flex;flex-direction:column;gap:14px;max-height:calc(100vh - 390px);overflow:auto;padding-right:6px;scrollbar-width:thin;scrollbar-color:rgba(15,23,42,.24) transparent}
+.timeline-list::-webkit-scrollbar{width:4px}.timeline-list::-webkit-scrollbar-thumb{background:rgba(15,23,42,.2);border-radius:999px}
+.timeline-item{position:relative;display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:flex-start}
+.timeline-item::after{content:'';position:absolute;left:24px;top:54px;bottom:-18px;border-left:2px dashed rgba(15,23,42,.14)}
+.timeline-item:last-child::after{display:none}
+.timeline-node{position:relative;width:52px;display:flex;flex-direction:column;align-items:center;gap:9px}
+.node-dot{width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,var(--spot), rgba(255,255,255,.88));box-shadow:0 0 0 6px color-mix(in srgb, var(--spot) 18%, transparent)}
+.node-time{font-size:.75rem;color:#64748b;font-weight:700;letter-spacing:.03em}
+.timeline-card{padding:14px 14px 13px;border-radius:20px;background:rgba(255,255,255,.46);border:1px solid rgba(255,255,255,.38);transition:all .3s ease}
+.timeline-card h4{margin:0 0 5px;font-size:1rem;color:#0f172a}
+.timeline-card p{margin:0;color:#475569;font-size:.88rem;line-height:1.55}
+.timeline-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
+.timeline-meta span{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 9px;background:rgba(15,23,42,.06);font-size:.76rem;color:#334155;font-weight:700}
+.timeline-item.active .timeline-card{background:rgba(15,23,42,.94);color:#fff;transform:translateX(4px);box-shadow:0 14px 26px rgba(15,23,42,.18)}
+.timeline-item.active .timeline-card h4,.timeline-item.active .timeline-card p{color:#fff}
+.timeline-item.active .timeline-meta span{background:rgba(255,255,255,.15);color:#fff}
+.bottom-panel{position:absolute;left:24px;right:24px;bottom:24px;z-index:4;padding:18px 18px 16px}
+.bottom-panel-head{display:flex;justify-content:space-between;gap:14px;align-items:end;margin-bottom:14px}
+.bottom-panel-head h2{margin:0;font-size:1.1rem;color:#0f172a}
+.bottom-panel-head p{margin:4px 0 0;color:#64748b;font-size:.9rem}
+.bottom-panel-head .legend{display:flex;gap:8px;flex-wrap:wrap}
+.bottom-panel-head .legend span{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:7px 10px;background:rgba(255,255,255,.44);font-size:.78rem;color:#334155}
+.spot-row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(248px,1fr);gap:14px;overflow:auto;padding-bottom:4px;scrollbar-width:none}
+.spot-row::-webkit-scrollbar{display:none}
+.spot-card{border:1px solid rgba(255,255,255,.34);background:rgba(255,255,255,.48);border-radius:24px;padding:16px 16px 15px;transition:all .3s ease;cursor:pointer;position:relative;overflow:hidden}
+.spot-card::before{content:'';position:absolute;inset:auto -20% -34% auto;width:120px;height:120px;border-radius:999px;background:radial-gradient(circle, color-mix(in srgb, var(--card) 50%, white 50%), transparent 70%);opacity:.65}
+.spot-card:hover{transform:translateY(-2px);background:rgba(255,255,255,.56)}
+.spot-card.active{background:linear-gradient(135deg, rgba(15,23,42,.94), rgba(30,41,59,.9));border-color:rgba(255,255,255,.16);box-shadow:0 14px 32px rgba(15,23,42,.26)}
+.spot-card.active *{color:#fff !important}
+.spot-pill{display:inline-flex;align-items:center;gap:8px;font-size:.75rem;color:#334155;background:rgba(255,255,255,.54);padding:6px 10px;border-radius:999px;font-weight:700}
+.spot-card.active .spot-pill{background:rgba(255,255,255,.14)}
+.spot-title{margin:12px 0 5px;font-size:1.08rem;font-weight:800;color:#0f172a}
+.spot-sub{margin:0;color:#475569;font-size:.9rem;line-height:1.55}
+.spot-foot{display:flex;justify-content:space-between;gap:12px;margin-top:14px;font-size:.8rem;color:#64748b;font-weight:700}
+.float-pin{position:absolute;z-index:2;padding:10px 12px;border-radius:18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(12px);color:#e2e8f0;font-size:.82rem;box-shadow:0 10px 24px rgba(2,6,23,.18)}
+.float-pin b{display:block;color:#fff;font-size:.88rem;margin-bottom:2px}
+.pin-osaka{top:22%;left:55%}.pin-usj{top:30%;left:49%}.pin-nagoya{top:40%;left:71%}.pin-ghibli{top:51%;left:78%}.pin-inuyama{top:34%;left:75%}
+.bento,.dashboard-card,.page-tools,.main-drawer,.drawer-body,.guide-group .group-heading, #budget-dashboard,#packing, .foot{
+  background:transparent;
+}
+.rounded-3xl.bg-white,
+.dashboard-card,
+.page-tools,
+.chapter details.main-drawer,
+.foot,
+#budget-dashboard,#packing{
+  background:var(--gm-panel) !important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--gm-border) !important;box-shadow:var(--gm-shadow) !important;
+}
+#days,#quick-tickets,#budget-dashboard,#packing{border-radius:28px !important}
+#days .day-tabs button,
+#quick-tickets .quiet-btn,
+#quick-tickets .dark-btn,
+.page-tools button,
+#prev-day,#next-day,
+#packing .quiet-btn,
+.upload-btn,
+.text-action,
+.quick-links a{
+  transition:all .3s ease !important
+}
+#days .day-tabs button:hover,
+#quick-tickets .quiet-btn:hover,
+#quick-tickets .dark-btn:hover,
+.page-tools button:hover,
+#prev-day:hover,#next-day:hover,
+#packing .quiet-btn:hover,
+.upload-btn:hover,
+.quick-links a:hover{transform:translateY(-1px)}
+.card-heading h2,.group-heading h2,.drawer-title{color:#0f172a !important}
+.overline,.subtle,.fine,.intro,.smallnote,.foot .license{color:#475569 !important}
+.page-tools{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 18px;border-radius:24px;margin:30px auto 24px}
+.page-tools > div{display:flex;gap:10px;flex-wrap:wrap}
+.page-tools button,.quiet-btn,.upload-btn{background:rgba(255,255,255,.52) !important;border:1px solid rgba(255,255,255,.5) !important;color:#0f172a !important;border-radius:999px !important;padding:10px 16px !important}
+.dark-btn, #quick-tickets .dark-btn{background:#0f172a !important;color:#fff !important;border-radius:999px !important;border:1px solid rgba(15,23,42,.2) !important}
+.quick-links a,.text-action{display:inline-flex;align-items:center;gap:6px;padding:9px 12px;background:rgba(255,255,255,.46);border:1px solid rgba(255,255,255,.42);border-radius:999px;color:#0f172a !important;text-decoration:none}
+.topnav a{color:#fff}
+#days .day-panel,#quick-tickets .qr-preview,.table-panel,.drawer-body,.fd-calc,.timeline .ticket,.anime-card,.stay-card,.stay-evidence .evidence-card,.photo,.gh-reminder,.gh-note,.gh-day,.gh-area,.hotel-summary,.fare-box,.spot-card,.watch-card,.calc-card,.table-wrap, .gh-table-wrap{
+  background:rgba(255,255,255,.45) !important;border:1px solid rgba(255,255,255,.36) !important;border-radius:24px !important
+}
+.chapter details.main-drawer>summary,.inner-drawer>summary{background:rgba(255,255,255,.28) !important;border-bottom:1px solid rgba(255,255,255,.28) !important}
+.drawer-body{backdrop-filter:blur(10px)}
+.foot{margin-top:32px;border-radius:28px;padding:22px 24px;color:#0f172a !important}
+@media (max-width:1100px){
+  .capsule-panel{position:relative;top:auto;right:auto;width:100%;margin-top:8px}
+  .timeline-panel{min-height:auto;width:100%;max-width:480px}
+  #map-first .map-stage{padding-bottom:250px}
+  .bottom-panel{left:16px;right:16px;bottom:16px}
+}
+@media (max-width:780px){
+  .dashboard-shell{padding:0 14px 56px !important}
+  #map-first{max-width:calc(100vw - 28px);margin:14px auto 20px;border-radius:28px}
+  #map-first .map-stage{min-height:auto;padding:18px 14px 220px}
+  .map-header{flex-direction:column;gap:14px !important}
+  .map-copy h1{font-size:2.2rem}
+  .timeline-panel{padding:18px 15px 16px;min-height:auto;margin-top:14px}
+  .timeline-list{max-height:none}
+  .bottom-panel{position:relative;left:auto;right:auto;bottom:auto;margin-top:18px;padding:15px}
+  .spot-row{grid-auto-columns:88%}
+  .capsule-actions{display:grid;grid-template-columns:1fr 1fr}
+  .float-pin{display:none}
+}
+
 </style><style>
 .flight-decision {background:linear-gradient(135deg,#f8f4ec,#f3f7f2);border-radius:20px;padding:clamp(18px,3vw,36px);border:1px solid #d8ded4;margin:18px 0 30px}
 .flight-decision .fd-note{font-size:14px;color:#526258;line-height:1.8}
@@ -259,7 +472,83 @@ h1,h2,h3{font-family:var(--serif);color:var(--ink);font-weight:500;letter-spacin
 @media(max-width:600px){.editor-side{padding:17px 18px}.dashboard-shell{padding:18px 16px 35px}.editor-cover{grid-template-columns:1fr;gap:16px;padding:10px 0 21px;margin-bottom:17px}.editor-cover h1{font-size:33px;margin-top:12px}.editor-cover .year{font-size:78px;margin-bottom:7px}.editor-cover .photo{aspect-ratio:1.65}.banner-inner{gap:13px}.banner-route{border:0;justify-content:flex-start}.banner-flight{border-top:1px solid #74816e;padding-top:12px}.reminder-card{padding:12px 14px}.reminder-card strong{font-size:26px}.card-heading h2{font-size:20px}.day-panel{padding:17px}.group-heading h2{font-size:22px}.group-heading{padding-top:15px;margin-bottom:11px}.guide-group{margin-top:30px}.main-drawer>summary,.inner-drawer>summary{padding:13px 11px}.drawer-body{padding:12px}.editor-side .topnav{gap:0 13px}.editor-side .side-volume{font-size:9px;margin-left:8px}}
 @media print{.editor-layout{display:block}.editor-side{display:none}.dashboard-shell{padding:0}body:before{display:none}.banner,.reminder-card{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
 </style></head><body>
-<div class="editor-layout"><aside class="editor-side"><div class="side-inner"><div class="side-brand">Spring<br/>Journal</div><p class="side-volume">Vol. 01 · 2027</p><nav aria-label="章節導覽" class="topnav"><a href="#days">每日行程</a><a href="#ghibli-guide">吉卜力</a><a href="#lodging">住宿</a><a href="#flights">機票</a><a href="#tickets">訂票</a><a href="#picks">景點</a><a href="#anime">動漫展</a><a href="#arts">美術展</a><details class="nav-more"><summary>更多</summary><div><a href="#inuyama">犬山祭</a><a href="#shiga">滋賀備選</a><a href="#fares">交通費</a><a href="#archive">歷史查價</a><a href="#checklist">出發前確認</a><a href="#flightdecisions">費用試算</a><a href="#watch">待確認展覽</a><a href="#budget-dashboard">分類預算</a><a href="#packing">行李打包</a></div></details></nav></div></aside><main class="shell dashboard-shell"><header class="editor-cover grid"><div class="cover-copy"><span class="eyebrow">Vol. 01 · Spring 2027</span><h1><span class="year">2027</span>大阪名古屋之旅</h1></div><figure class="m-0"><div class="matte"><div aria-label="大阪城與櫻花；照片無法載入時顯示風景示意圖" class="photo rounded-none contrast-[0.95] saturate-[0.85] sepia-[0.12]" role="img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Cherry_Blossoms_of_Osakajo_Castle_(1).jpg/960px-Cherry_Blossoms_of_Osakajo_Castle_(1).jpg'),url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjY1MCIgdmlld0JveD0iMCAwIDEwMDAgNjUwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agc3RvcC1jb2xvcj0iI2I5YzFhZiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Q1Y2JiNiIvPjwvbGluZWFyR3JhZGllbnQ+PGZpbHRlciBpZD0iZ3JhaW4iPjxmZVR1cmJ1bGVuY2UgdHlwZT0iZnJhY3RhbE5vaXNlIiBiYXNlRnJlcXVlbmN5PSIuNzIiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48ZmVDb2xvck1hdHJpeCB0eXBlPSJzYXR1cmF0ZSIgdmFsdWVzPSIwIi8+PC9maWx0ZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjY1MCIgZmlsbD0idXJsKCNzKSIvPjxjaXJjbGUgY3g9IjE4MCIgY3k9IjEwNSIgcj0iNDciIGZpbGw9IiNlN2RmYmQiIG9wYWNpdHk9Ii42MyIvPjxwYXRoIGQ9Ik0wIDMwMFExMjYgMTcwIDI3MCAyNzBUNTQwIDI0MFQ3OTAgMjQwVDEwMDAgMTgwVjUyMEgwWiIgZmlsbD0iI2EwYTQ5NCIvPjxwYXRoIGQ9Ik0wIDM2M1EyMDAgMjg4IDM1MCAzMjBUNjUwIDI4MFQxMDAwIDMwNVY1MzBIMFoiIGZpbGw9IiM1MzY2NGQiLz48cGF0aCBkPSJNMCA0NjBRMjMwIDM4MiA0MTAgNDAzVDY5MCAzNzBUMTAwMCA0MTFWNjUwSDBaIiBmaWxsPSIjMzQ0YjNhIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjMwIDE2MikiIGZpbGw9IiNlOGUxY2YiIHN0cm9rZT0iIzRhNTE0NSIgc3Ryb2tlLXdpZHRoPSIyIj48cGF0aCBkPSJNLTk1IDE3MmgxOTB2NDJILTk1eiIgZmlsbD0iIzc3Nzk2YiIvPjxwYXRoIGQ9Ik0tNjUgMTE0aDEzMHY1OUgtNjV6Ii8+PHBhdGggZD0iTS00OCA2M2g5NnY1MGgtOTZ6Ii8+PHBhdGggZD0iTS0zMyAxNGg2NnY0OGgtNjZ6Ii8+PGcgZmlsbD0iIzNiNTE0NiI+PHBhdGggZD0iTS0xMDAgMTEzIFEtNTkgMTA4IC00OSA5MUg0OVE2MSAxMDggMTAwIDExM0w3NSAxMjFILTc1WiIvPjxwYXRoIGQ9Ik0tNzUgNjJRLTQ0IDU5IC0zMyA0NEgzM1E0MyA1OCA3NSA2Mkw1NCA3MEgtNTRaIi8+PHBhdGggZD0iTS01NiAxNFEtMTYgNiAwIC0xNFExNSA2IDU2IDE0TDQwIDIxSC00MFoiLz48cGF0aCBkPSJNLTExNyAxNzNRLTc3IDE2NiAtNjUgMTQ3SDY1UTgwIDE2NiAxMTcgMTczTDg5IDE4MEgtODlaIi8+PC9nPjxnIGZpbGw9IiM1MTU5NGEiPjxwYXRoIGQ9Ik0tMTIgMzRoMjR2MTZoLTI0eiBNLTI0IDg0aDEydjE3aC0xMnogTTEyIDg0aDEydjE3SDEyeiBNLTM0IDEzMmgxNnYxOGgtMTZ6IE0xOCAxMzJoMTZ2MThIMTh6Ii8+PC9nPjwvZz48cGF0aCBkPSJNMCA0OTBRMjM1IDQzMiA0NDUgNDkyVDEwMDAgNDUwVjY1MEgwWiIgZmlsbD0iI2EwYTQ5NCIvPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2U5ZTFjZSIgb3BhY2l0eT0iLjQ1Ij48cGF0aCBkPSJNNSA1MzVRMjUwIDUwMiA0ODAgNTM1VDk5NCA1MTJNMTAgNTc5UTI1MCA1NDggNTAwIDU3OFQ5OTggNTU3TTEwMCA2MTVRMzc1IDU4OSA1NzAgNjE1Ii8+PC9nPjxnIHN0cm9rZT0iIzU1NGM0MCIgc3Ryb2tlLXdpZHRoPSI2IiBmaWxsPSJub25lIj48cGF0aCBkPSJNLTEwIDU3MFExMDAgNDEyIDEwNSAyMzBUMjQwIDcyTTEwNSAzMDlRNzAgMjAwIDggMTY2TTExNiAyNDdRMTk4IDE4OCAyNzQgMTk1Ii8+PC9nPjxjaXJjbGUgY3g9IjI3LjUiIGN5PSIxODMuOCIgcj0iNi43IiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjE4LjMiIGN5PSIxNTUuMCIgcj0iMy4xIiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIzLjkiIGN5PSIxNzMuOSIgcj0iMTMuMCIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSItNi44IiBjeT0iMTUzLjkiIHI9IjcuMCIgZmlsbD0iI2VjZTFkMCIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyNi43IiBjeT0iMTcwLjgiIHI9IjEyLjMiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjIuOSIgY3k9IjEzMS43IiByPSIzLjYiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjIuOSIgY3k9IjE2NC41IiByPSIxMS43IiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ii0yMy40IiBjeT0iMTM2LjAiIHI9IjYuOSIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSItMTEuOSIgY3k9IjE4MC45IiByPSI3LjQiIGZpbGw9IiNlY2UxZDAiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMzMuNSIgY3k9IjE1NC4xIiByPSI0LjQiIGZpbGw9IiNlY2UxZDAiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjMuMSIgY3k9IjE4OC4zIiByPSIxMC44IiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ii0xOC4zIiBjeT0iMTc3LjEiIHI9IjguNyIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSItMjMuNiIgY3k9IjEzOS4yIiByPSI5LjgiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iNzQuNSIgY3k9IjExNC4yIiByPSI5LjciIGZpbGw9IiNlY2UxZDAiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTcuNyIgY3k9IjE0NC4wIiByPSI4LjQiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjEuMCIgY3k9IjE0Ny4zIiByPSIxMS4zIiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIyLjkiIGN5PSIxNjYuNyIgcj0iMTEuNSIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI2NC43IiBjeT0iMTc4LjAiIHI9IjcuMSIgZmlsbD0iI2VjZTFkMCIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI1Mi4yIiBjeT0iMTYyLjUiIHI9IjcuMiIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI1OS41IiBjeT0iMTY3LjIiIHI9IjMuNCIgZmlsbD0iI2M0YjlhNSIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSItMzAuNyIgY3k9IjE0Ni41IiByPSI1LjgiIGZpbGw9IiNlY2UxZDAiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iNDcuNCIgY3k9IjE1OS44IiByPSIzLjgiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iOTAuOCIgY3k9IjE0NC4wIiByPSI1LjkiIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjkuMyIgY3k9IjE2NC43IiByPSIxMS43IiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ijg2LjkiIGN5PSIyMTEuMCIgcj0iMTEuNiIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI2NS41IiBjeT0iMjA4LjciIHI9IjkuNCIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI1MS4wIiBjeT0iMTcyLjEiIHI9IjguMSIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI2OC42IiBjeT0iMTgwLjUiIHI9IjEyLjQiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTI3LjIiIGN5PSIxOTkuOCIgcj0iOC41IiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjExNC40IiBjeT0iMTQ4LjQiIHI9IjYuMSIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI2OC41IiBjeT0iMTg1LjEiIHI9IjMuNiIgZmlsbD0iI2M0YjlhNSIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI1Ny43IiBjeT0iMjA5LjAiIHI9IjYuNSIgZmlsbD0iI2M0YjlhNSIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI5NS42IiBjeT0iMTk5LjAiIHI9IjMuNiIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxMTUuMiIgY3k9IjE5OS43IiByPSI3LjYiIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTAzLjMiIGN5PSIyMTMuOSIgcj0iMTAuNiIgZmlsbD0iI2M0YjlhNSIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI4OC4xIiBjeT0iMjIwLjYiIHI9IjEwLjciIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTM0LjgiIGN5PSIxOTcuOCIgcj0iNC4zIiBmaWxsPSIjZWNlMWQwIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ijg0LjMiIGN5PSIxOTAuNiIgcj0iNi4zIiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ijg5LjEiIGN5PSIxOTYuMSIgcj0iOS4wIiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ijg3LjYiIGN5PSIxOTAuOSIgcj0iMTEuMSIgZmlsbD0iI2VjZTFkMCIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxMzMuNSIgY3k9IjIxOC4xIiByPSI1LjIiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iOTAuMSIgY3k9IjIzNi4xIiByPSIzLjMiIGZpbGw9IiNlY2UxZDAiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iNzYuMyIgY3k9IjIzNi4yIiByPSI4LjciIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iNjkuOCIgY3k9IjIzMy4xIiByPSIzLjkiIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iNzMuMCIgY3k9IjE5Mi40IiByPSI4LjIiIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iNjAuMCIgY3k9IjIwOC45IiByPSI1LjkiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTIyLjIiIGN5PSIyMDcuMyIgcj0iNS4wIiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjE0Ni4yIiBjeT0iMTg5LjMiIHI9IjEyLjkiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTA0LjMiIGN5PSIxMzQuMCIgcj0iMTAuMiIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxNzMuNiIgY3k9IjExNy44IiByPSI5LjYiIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTIyLjUiIGN5PSIxNDMuMSIgcj0iMTEuNiIgZmlsbD0iI2M0YjlhNSIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxODkuMiIgY3k9IjE2My43IiByPSIzLjQiIGZpbGw9IiNlY2UxZDAiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjE5LjQiIGN5PSIxMjkuMyIgcj0iOC44IiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjE2MS45IiBjeT0iMTU1LjEiIHI9IjguMCIgZmlsbD0iI2VjZTFkMCIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxNTguNSIgY3k9IjEzNC4yIiByPSI3LjEiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTY0LjIiIGN5PSIxNjYuMiIgcj0iMTEuNiIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxNzguNSIgY3k9IjE0Ny43IiByPSI1LjIiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTI4LjIiIGN5PSIxNDYuNCIgcj0iNC43IiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIxNi41IiBjeT0iMTM3LjgiIHI9IjExLjIiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTQxLjMiIGN5PSIxNTUuOSIgcj0iNy4wIiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjE3NS40IiBjeT0iMTgwLjQiIHI9IjguMiIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxMzAuNiIgY3k9IjE1OS42IiByPSIzLjAiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTc2LjMiIGN5PSIxNDguMiIgcj0iMy41IiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIyNS40IiBjeT0iMTQ4LjEiIHI9IjMuOSIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxNjUuOSIgY3k9IjE2OS4xIiByPSI2LjUiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTU0LjAiIGN5PSIxNDQuNyIgcj0iNC45IiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjE2Mi44IiBjeT0iMTU4LjMiIHI9IjMuMCIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxODQuNCIgY3k9IjEzMC40IiByPSIzLjQiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTM5LjAiIGN5PSIxMzMuNyIgcj0iNi44IiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjE1NS4yIiBjeT0iMTM5LjkiIHI9IjYuNyIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxNzYuNCIgY3k9IjEzNy41IiByPSIxMi41IiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjE1Ni4xIiBjeT0iMTU3LjUiIHI9IjguNCIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyMjYuMSIgY3k9Ijg1LjIiIHI9IjQuMyIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyNDMuMiIgY3k9IjkwLjkiIHI9IjEyLjAiIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjQ4LjgiIGN5PSIxMTguMSIgcj0iMTIuNCIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxOTkuMSIgY3k9IjcxLjEiIHI9IjguNiIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyMzUuNiIgY3k9IjcwLjEiIHI9IjcuNyIgZmlsbD0iI2VjZTFkMCIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyMjEuMiIgY3k9IjkyLjMiIHI9IjMuOSIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyMDYuNCIgY3k9IjgyLjUiIHI9IjExLjIiIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjI3LjIiIGN5PSI4OS45IiByPSIxMS40IiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI1My4xIiBjeT0iNTcuOCIgcj0iOC44IiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI2My4zIiBjeT0iMTA1LjMiIHI9IjguMSIgZmlsbD0iI2VjZTFkMCIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyNTMuOSIgY3k9IjExNy42IiByPSIxMi4zIiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjE3MC4xIiBjeT0iODYuMSIgcj0iNC44IiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIyMC44IiBjeT0iMTA5LjkiIHI9IjUuNSIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyMTkuNCIgY3k9IjEyMy43IiByPSIxMi40IiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI0NC43IiBjeT0iOTQuMSIgcj0iNS40IiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI1Ny43IiBjeT0iNTYuNyIgcj0iNy4yIiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIzNC42IiBjeT0iMTE0LjAiIHI9IjExLjkiIGZpbGw9IiNlY2UxZDAiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjU1LjYiIGN5PSIxMTUuOSIgcj0iMTIuMiIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxNzYuMCIgY3k9Ijc4LjYiIHI9IjQuNCIgZmlsbD0iI2VjZTFkMCIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyMzguOSIgY3k9IjExNi4yIiByPSIxMi4zIiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjE5NS44IiBjeT0iNjUuMSIgcj0iOS4wIiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIzNy4xIiBjeT0iODcuNiIgcj0iNS43IiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIzMC4zIiBjeT0iMTIxLjUiIHI9IjUuNCIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyMjIuMiIgY3k9Ijg3LjUiIHI9IjEyLjkiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjYwLjciIGN5PSIxNzcuNyIgcj0iOC44IiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIyNC44IiBjeT0iMTkzLjYiIHI9IjExLjYiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjc3LjEiIGN5PSIxNTEuNiIgcj0iMy41IiBmaWxsPSIjZWNlMWQwIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI5NS4xIiBjeT0iMTcyLjYiIHI9IjEwLjgiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMzE1LjMiIGN5PSIxODAuNCIgcj0iNS40IiBmaWxsPSIjZWNlMWQwIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI2OC4zIiBjeT0iMTc5LjgiIHI9IjkuMiIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyODIuMSIgY3k9IjE4MS40IiByPSIxMS43IiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI3MC42IiBjeT0iMTk3LjYiIHI9IjExLjAiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMzA3LjIiIGN5PSIyMDkuOCIgcj0iNS45IiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIyNS42IiBjeT0iMTk5LjEiIHI9IjYuNCIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyNTEuOSIgY3k9IjIwNy41IiByPSI3LjkiIGZpbGw9IiNlY2UxZDAiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjM5LjYiIGN5PSIxNjUuNCIgcj0iNy45IiBmaWxsPSIjZWNlMWQwIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI1My40IiBjeT0iMTg3LjQiIHI9IjUuNyIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIzMDcuMyIgY3k9IjIxNS44IiByPSIxMi4xIiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIyNi4yIiBjeT0iMTg0LjkiIHI9IjkuOCIgZmlsbD0iI2M0YjlhNSIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyNjcuMCIgY3k9IjE3NC4xIiByPSI5LjgiIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMzE0LjkiIGN5PSIyMTguNSIgcj0iNi40IiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI1MC41IiBjeT0iMTcwLjQiIHI9IjMuNiIgZmlsbD0iI2M0YjlhNSIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyNTEuNCIgY3k9IjE2Ny45IiByPSI0LjgiIGZpbGw9IiNlY2UxZDAiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjg5LjUiIGN5PSIyMjYuMCIgcj0iOS42IiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI5MS45IiBjeT0iMjA1LjMiIHI9IjEyLjIiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjMwLjciIGN5PSIxODAuNyIgcj0iNy42IiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI3NC4yIiBjeT0iMTYwLjkiIHI9IjQuMSIgZmlsbD0iI2VjZTFkMCIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyNjYuOSIgY3k9IjE2Ni4yIiByPSIxMC40IiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ijk3LjciIGN5PSIyOTguOSIgcj0iMy41IiBmaWxsPSIjZWNlMWQwIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjExMC43IiBjeT0iMjk1LjkiIHI9IjUuNSIgZmlsbD0iI2M0YjlhNSIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxMjUuNCIgY3k9IjI1Ny43IiByPSI3LjUiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iNTAuNyIgY3k9IjMxOS40IiByPSI0LjEiIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iNDcuOCIgY3k9IjI3NC42IiByPSI4LjYiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iODcuNyIgY3k9IjMwMS4zIiByPSI3LjIiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iOTguMyIgY3k9IjI2MS4xIiByPSI4LjkiIGZpbGw9IiNlY2UxZDAiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTEwLjUiIGN5PSIyNjMuNyIgcj0iOC40IiBmaWxsPSIjZWNlMWQwIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjY1LjEiIGN5PSIyODQuNyIgcj0iNS41IiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjEyNy4wIiBjeT0iMjk2LjQiIHI9IjExLjkiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iNTguMiIgY3k9IjMyNy44IiByPSI2LjEiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTIwLjIiIGN5PSIyODUuOCIgcj0iNi4wIiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ijk3LjYiIGN5PSIyOTIuMyIgcj0iOS4zIiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ijg1LjkiIGN5PSIyNjIuMiIgcj0iNy45IiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ijk1LjMiIGN5PSIzMjEuNSIgcj0iNS4xIiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ijk3LjIiIGN5PSIzMDAuMCIgcj0iOS42IiBmaWxsPSIjZWNlMWQwIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjExMS40IiBjeT0iMzE1LjQiIHI9IjkuMiIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxMTYuNiIgY3k9IjI5NC4yIiByPSI4LjEiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjIuOCIgY3k9IjI3OS40IiByPSI2LjIiIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iNzYuMiIgY3k9IjI4MC40IiByPSIxMS42IiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjcxLjkiIGN5PSIyNTkuNSIgcj0iNi40IiBmaWxsPSIjZWNlMWQwIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjEyOC4wIiBjeT0iMjc0LjMiIHI9IjcuNCIgZmlsbD0iI2VjZTFkMCIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI2OC42IiBjeT0iMjkwLjkiIHI9IjMuNCIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxMDMuOSIgY3k9IjI2NS40IiByPSI2LjkiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PHJlY3Qgd2lkdGg9IjEwMDAiIGhlaWdodD0iNjUwIiBmaWx0ZXI9InVybCgjZ3JhaW4pIiBvcGFjaXR5PSIuMDkiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTptdWx0aXBseSIvPjwvc3ZnPg==')"><div class="photo-frame"><img alt="大阪城與櫻花" loading="eager" onerror="this.closest('div.photo-frame').classList.add('photo-failed')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Cherry_Blossoms_of_Osakajo_Castle_(1).jpg/960px-Cherry_Blossoms_of_Osakajo_Castle_(1).jpg"/><div class="photo-credit"><a href="https://commons.wikimedia.org/wiki/File:Cherry_Blossoms_of_Osakajo_Castle_(1).jpg" rel="noopener" target="_blank">實景照片・Mr.ちゅらさん／Wikimedia Commons</a></div></div></div></div><figcaption class="caption flex flex-wrap justify-between gap-2"><span><i>Osaka, spring</i> · <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Cherry_Blossoms_of_Osakajo_Castle_(1).jpg/960px-Cherry_Blossoms_of_Osakajo_Castle_(1).jpg">Wikimedia Commons</a></span><span>34.69° N / 135.50° E</span></figcaption></figure></header>
+<div class="editor-layout"><aside class="editor-side"><div class="side-inner"><div class="side-brand">Spring<br/>Journal</div><p class="side-volume">Vol. 01 · 2027</p><nav aria-label="章節導覽" class="topnav"><a href="#days">每日行程</a><a href="#ghibli-guide">吉卜力</a><a href="#lodging">住宿</a><a href="#flights">機票</a><a href="#tickets">訂票</a><a href="#picks">景點</a><a href="#anime">動漫展</a><a href="#arts">美術展</a><details class="nav-more"><summary>更多</summary><div><a href="#inuyama">犬山祭</a><a href="#shiga">滋賀備選</a><a href="#fares">交通費</a><a href="#archive">歷史查價</a><a href="#checklist">出發前確認</a><a href="#flightdecisions">費用試算</a><a href="#watch">待確認展覽</a><a href="#budget-dashboard">分類預算</a><a href="#packing">行李打包</a></div></details></nav></div></aside><main class="shell dashboard-shell">
+
+<section id="map-first">
+  <div class="map-stage">
+    <div class="map-bg" aria-hidden="true"></div>
+    <svg aria-hidden="true" class="map-svg" fill="none" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 595C214 548 340 516 492 566C621 609 720 700 907 700C1094 700 1186 584 1400 612" stroke="rgba(255,255,255,.05)" stroke-width="90"/>
+      <path d="M140 150C299 203 428 290 550 400C690 526 773 525 932 455C1043 406 1147 334 1300 347" stroke="rgba(255,255,255,.06)" stroke-dasharray="3 18" stroke-linecap="round" stroke-width="2"/>
+      <path d="M420 245C514 306 555 329 672 371C760 402 816 418 897 474" stroke="rgba(96,165,250,.82)" stroke-dasharray="12 12" stroke-linecap="round" stroke-width="4"/>
+      <path d="M417 243C444 264 477 275 499 289" stroke="rgba(255,255,255,.8)" stroke-linecap="round" stroke-width="8"/>
+      <path d="M503 291C550 322 575 338 628 356" stroke="rgba(196,181,253,.85)" stroke-linecap="round" stroke-width="8"/>
+      <path d="M632 357C717 385 780 402 894 471" stroke="rgba(251,191,36,.82)" stroke-linecap="round" stroke-width="8"/>
+      <circle cx="418" cy="243" fill="#93C5FD" r="13"/><circle cx="503" cy="291" fill="#C4B5FD" r="11"/><circle cx="632" cy="357" fill="#F9A8D4" r="11"/><circle cx="894" cy="471" fill="#FCD34D" r="13"/>
+      <circle cx="1045" cy="304" fill="rgba(255,255,255,.08)" r="96"/>
+      <circle cx="1110" cy="650" fill="rgba(255,255,255,.07)" r="72"/>
+    </svg>
+    <div class="map-header">
+      <div class="map-brand">
+        <span class="map-kicker"><span class="dot"></span>Travel Planner · Map First</span>
+        <div class="map-copy">
+          <h1>2027大阪名古屋之旅</h1>
+          <p>以地圖與空間感為核心的旅行規劃介面。上方旅程節點、左側每日動線、下方精選景點卡，讓整趟大阪與名古屋旅程像一張可閱讀的行動地圖。</p>
+        </div>
+      </div>
+    </div>
+    <div class="float-pin pin-osaka"><b>Osaka</b><span>3/27–3/31 · 4 nights</span></div>
+    <div class="float-pin pin-usj"><b>USJ</b><span>Day 03 highlight</span></div>
+    <div class="float-pin pin-nagoya"><b>Nagoya</b><span>4/1–4/5 · 5 nights</span></div>
+    <div class="float-pin pin-ghibli"><b>Ghibli Park</b><span>Day 06–07</span></div>
+    <div class="float-pin pin-inuyama"><b>Inuyama</b><span>Optional festival stop</span></div>
+    <aside class="glass-panel capsule-panel">
+      <div class="capsule-top">
+        <div>
+          <div class="capsule-label">共同旅伴</div>
+          <div class="avatar-stack" aria-label="同行旅伴">
+            <span class="avatar j" title="Jaren">J</span>
+            <span class="avatar k" title="Ken">K</span>
+          </div>
+        </div>
+        <div>
+          <div class="capsule-label">共同編輯狀態</div>
+          <div class="capsule-status"><span class="status-light"></span><span>同步中</span></div>
+        </div>
+      </div>
+      <div class="capsule-actions">
+        <button class="glass-btn primary" id="export-pdf" type="button">匯出 PDF</button>
+        <a class="glass-btn secondary" href="#quick-tickets">查看票券</a>
+        <a class="glass-btn secondary" href="#tickets">訂票日曆</a>
+      </div>
+    </aside>
+    <section class="glass-panel timeline-panel" aria-labelledby="map-timeline-title">
+      <div class="timeline-head">
+        <div>
+          <div class="capsule-label">Daily Route Timeline</div>
+          <h2 id="map-timeline-title">每日動線時間軸</h2>
+          <p>景點之間標示步行／地鐵時間與距離；下方卡片可快速切換對應日程與亮點。</p>
+        </div>
+      </div>
+      <div class="glass-day-tabs" id="glass-day-tabs" aria-label="每日切換"></div>
+      <div class="glass-day-summary" id="glass-day-summary"></div>
+      <div class="timeline-list" id="glass-timeline"></div>
+      <div class="map-mini-links"><a href="#days">完整十天行程</a><a href="#ghibli-guide">吉卜力攻略</a><a href="#flights">機票與交通</a></div>
+    </section>
+    <section class="glass-panel bottom-panel" aria-labelledby="map-spot-title">
+      <div class="bottom-panel-head">
+        <div>
+          <div class="capsule-label">Spotlight</div>
+          <h2 id="map-spot-title">精選景點卡</h2>
+          <p>點擊任一卡片，左側時間軸會自動切換並高亮對應的行程項目。</p>
+        </div>
+        <div class="legend"><span>● 大阪</span><span>● 名古屋</span><span>● 備選</span></div>
+      </div>
+      <div class="spot-row" id="spot-cards"></div>
+    </section>
+  </div>
+</section>
+<header class="editor-cover grid"><div class="cover-copy"><span class="eyebrow">Vol. 01 · Spring 2027</span><h1><span class="year">2027</span>大阪名古屋之旅</h1></div><figure class="m-0"><div class="matte"><div aria-label="大阪城與櫻花；照片無法載入時顯示風景示意圖" class="photo rounded-none contrast-[0.95] saturate-[0.85] sepia-[0.12]" role="img" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Cherry_Blossoms_of_Osakajo_Castle_(1).jpg/960px-Cherry_Blossoms_of_Osakajo_Castle_(1).jpg'),url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjY1MCIgdmlld0JveD0iMCAwIDEwMDAgNjUwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agc3RvcC1jb2xvcj0iI2I5YzFhZiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Q1Y2JiNiIvPjwvbGluZWFyR3JhZGllbnQ+PGZpbHRlciBpZD0iZ3JhaW4iPjxmZVR1cmJ1bGVuY2UgdHlwZT0iZnJhY3RhbE5vaXNlIiBiYXNlRnJlcXVlbmN5PSIuNzIiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48ZmVDb2xvck1hdHJpeCB0eXBlPSJzYXR1cmF0ZSIgdmFsdWVzPSIwIi8+PC9maWx0ZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjY1MCIgZmlsbD0idXJsKCNzKSIvPjxjaXJjbGUgY3g9IjE4MCIgY3k9IjEwNSIgcj0iNDciIGZpbGw9IiNlN2RmYmQiIG9wYWNpdHk9Ii42MyIvPjxwYXRoIGQ9Ik0wIDMwMFExMjYgMTcwIDI3MCAyNzBUNTQwIDI0MFQ3OTAgMjQwVDEwMDAgMTgwVjUyMEgwWiIgZmlsbD0iI2EwYTQ5NCIvPjxwYXRoIGQ9Ik0wIDM2M1EyMDAgMjg4IDM1MCAzMjBUNjUwIDI4MFQxMDAwIDMwNVY1MzBIMFoiIGZpbGw9IiM1MzY2NGQiLz48cGF0aCBkPSJNMCA0NjBRMjMwIDM4MiA0MTAgNDAzVDY5MCAzNzBUMTAwMCA0MTFWNjUwSDBaIiBmaWxsPSIjMzQ0YjNhIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjMwIDE2MikiIGZpbGw9IiNlOGUxY2YiIHN0cm9rZT0iIzRhNTE0NSIgc3Ryb2tlLXdpZHRoPSIyIj48cGF0aCBkPSJNLTk1IDE3MmgxOTB2NDJILTk1eiIgZmlsbD0iIzc3Nzk2YiIvPjxwYXRoIGQ9Ik0tNjUgMTE0aDEzMHY1OUgtNjV6Ii8+PHBhdGggZD0iTS00OCA2M2g5NnY1MGgtOTZ6Ii8+PHBhdGggZD0iTS0zMyAxNGg2NnY0OGgtNjZ6Ii8+PGcgZmlsbD0iIzNiNTE0NiI+PHBhdGggZD0iTS0xMDAgMTEzIFEtNTkgMTA4IC00OSA5MUg0OVE2MSAxMDggMTAwIDExM0w3NSAxMjFILTc1WiIvPjxwYXRoIGQ9Ik0tNzUgNjJRLTQ0IDU5IC0zMyA0NEgzM1E0MyA1OCA3NSA2Mkw1NCA3MEgtNTRaIi8+PHBhdGggZD0iTS01NiAxNFEtMTYgNiAwIC0xNFExNSA2IDU2IDE0TDQwIDIxSC00MFoiLz48cGF0aCBkPSJNLTExNyAxNzNRLTc3IDE2NiAtNjUgMTQ3SDY1UTgwIDE2NiAxMTcgMTczTDg5IDE4MEgtODlaIi8+PC9nPjxnIGZpbGw9IiM1MTU5NGEiPjxwYXRoIGQ9Ik0tMTIgMzRoMjR2MTZoLTI0eiBNLTI0IDg0aDEydjE3aC0xMnogTTEyIDg0aDEydjE3SDEyeiBNLTM0IDEzMmgxNnYxOGgtMTZ6IE0xOCAxMzJoMTZ2MThIMTh6Ii8+PC9nPjwvZz48cGF0aCBkPSJNMCA0OTBRMjM1IDQzMiA0NDUgNDkyVDEwMDAgNDUwVjY1MEgwWiIgZmlsbD0iI2EwYTQ5NCIvPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2U5ZTFjZSIgb3BhY2l0eT0iLjQ1Ij48cGF0aCBkPSJNNSA1MzVRMjUwIDUwMiA0ODAgNTM1VDk5NCA1MTJNMTAgNTc5UTI1MCA1NDggNTAwIDU3OFQ5OTggNTU3TTEwMCA2MTVRMzc1IDU4OSA1NzAgNjE1Ii8+PC9nPjxnIHN0cm9rZT0iIzU1NGM0MCIgc3Ryb2tlLXdpZHRoPSI2IiBmaWxsPSJub25lIj48cGF0aCBkPSJNLTEwIDU3MFExMDAgNDEyIDEwNSAyMzBUMjQwIDcyTTEwNSAzMDlRNzAgMjAwIDggMTY2TTExNiAyNDdRMTk4IDE4OCAyNzQgMTk1Ii8+PC9nPjxjaXJjbGUgY3g9IjI3LjUiIGN5PSIxODMuOCIgcj0iNi43IiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjE4LjMiIGN5PSIxNTUuMCIgcj0iMy4xIiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIzLjkiIGN5PSIxNzMuOSIgcj0iMTMuMCIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSItNi44IiBjeT0iMTUzLjkiIHI9IjcuMCIgZmlsbD0iI2VjZTFkMCIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyNi43IiBjeT0iMTcwLjgiIHI9IjEyLjMiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjIuOSIgY3k9IjEzMS43IiByPSIzLjYiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjIuOSIgY3k9IjE2NC41IiByPSIxMS43IiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ii0yMy40IiBjeT0iMTM2LjAiIHI9IjYuOSIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSItMTEuOSIgY3k9IjE4MC45IiByPSI3LjQiIGZpbGw9IiNlY2UxZDAiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMzMuNSIgY3k9IjE1NC4xIiByPSI0LjQiIGZpbGw9IiNlY2UxZDAiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjMuMSIgY3k9IjE4OC4zIiByPSIxMC44IiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ii0xOC4zIiBjeT0iMTc3LjEiIHI9IjguNyIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSItMjMuNiIgY3k9IjEzOS4yIiByPSI5LjgiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iNzQuNSIgY3k9IjExNC4yIiByPSI5LjciIGZpbGw9IiNlY2UxZDAiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTcuNyIgY3k9IjE0NC4wIiByPSI4LjQiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjEuMCIgY3k9IjE0Ny4zIiByPSIxMS4zIiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIyLjkiIGN5PSIxNjYuNyIgcj0iMTEuNSIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI2NC43IiBjeT0iMTc4LjAiIHI9IjcuMSIgZmlsbD0iI2VjZTFkMCIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI1Mi4yIiBjeT0iMTYyLjUiIHI9IjcuMiIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI1OS41IiBjeT0iMTY3LjIiIHI9IjMuNCIgZmlsbD0iI2M0YjlhNSIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSItMzAuNyIgY3k9IjE0Ni41IiByPSI1LjgiIGZpbGw9IiNlY2UxZDAiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iNDcuNCIgY3k9IjE1OS44IiByPSIzLjgiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iOTAuOCIgY3k9IjE0NC4wIiByPSI1LjkiIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjkuMyIgY3k9IjE2NC43IiByPSIxMS43IiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ijg2LjkiIGN5PSIyMTEuMCIgcj0iMTEuNiIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI2NS41IiBjeT0iMjA4LjciIHI9IjkuNCIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI1MS4wIiBjeT0iMTcyLjEiIHI9IjguMSIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI2OC42IiBjeT0iMTgwLjUiIHI9IjEyLjQiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTI3LjIiIGN5PSIxOTkuOCIgcj0iOC41IiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjExNC40IiBjeT0iMTQ4LjQiIHI9IjYuMSIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI2OC41IiBjeT0iMTg1LjEiIHI9IjMuNiIgZmlsbD0iI2M0YjlhNSIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI1Ny43IiBjeT0iMjA5LjAiIHI9IjYuNSIgZmlsbD0iI2M0YjlhNSIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI5NS42IiBjeT0iMTk5LjAiIHI9IjMuNiIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxMTUuMiIgY3k9IjE5OS43IiByPSI3LjYiIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTAzLjMiIGN5PSIyMTMuOSIgcj0iMTAuNiIgZmlsbD0iI2M0YjlhNSIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI4OC4xIiBjeT0iMjIwLjYiIHI9IjEwLjciIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTM0LjgiIGN5PSIxOTcuOCIgcj0iNC4zIiBmaWxsPSIjZWNlMWQwIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ijg0LjMiIGN5PSIxOTAuNiIgcj0iNi4zIiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ijg5LjEiIGN5PSIxOTYuMSIgcj0iOS4wIiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ijg3LjYiIGN5PSIxOTAuOSIgcj0iMTEuMSIgZmlsbD0iI2VjZTFkMCIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxMzMuNSIgY3k9IjIxOC4xIiByPSI1LjIiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iOTAuMSIgY3k9IjIzNi4xIiByPSIzLjMiIGZpbGw9IiNlY2UxZDAiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iNzYuMyIgY3k9IjIzNi4yIiByPSI4LjciIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iNjkuOCIgY3k9IjIzMy4xIiByPSIzLjkiIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iNzMuMCIgY3k9IjE5Mi40IiByPSI4LjIiIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iNjAuMCIgY3k9IjIwOC45IiByPSI1LjkiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTIyLjIiIGN5PSIyMDcuMyIgcj0iNS4wIiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjE0Ni4yIiBjeT0iMTg5LjMiIHI9IjEyLjkiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTA0LjMiIGN5PSIxMzQuMCIgcj0iMTAuMiIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxNzMuNiIgY3k9IjExNy44IiByPSI5LjYiIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTIyLjUiIGN5PSIxNDMuMSIgcj0iMTEuNiIgZmlsbD0iI2M0YjlhNSIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxODkuMiIgY3k9IjE2My43IiByPSIzLjQiIGZpbGw9IiNlY2UxZDAiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjE5LjQiIGN5PSIxMjkuMyIgcj0iOC44IiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjE2MS45IiBjeT0iMTU1LjEiIHI9IjguMCIgZmlsbD0iI2VjZTFkMCIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxNTguNSIgY3k9IjEzNC4yIiByPSI3LjEiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTY0LjIiIGN5PSIxNjYuMiIgcj0iMTEuNiIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxNzguNSIgY3k9IjE0Ny43IiByPSI1LjIiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTI4LjIiIGN5PSIxNDYuNCIgcj0iNC43IiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIxNi41IiBjeT0iMTM3LjgiIHI9IjExLjIiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTQxLjMiIGN5PSIxNTUuOSIgcj0iNy4wIiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjE3NS40IiBjeT0iMTgwLjQiIHI9IjguMiIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxMzAuNiIgY3k9IjE1OS42IiByPSIzLjAiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTc2LjMiIGN5PSIxNDguMiIgcj0iMy41IiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIyNS40IiBjeT0iMTQ4LjEiIHI9IjMuOSIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxNjUuOSIgY3k9IjE2OS4xIiByPSI2LjUiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTU0LjAiIGN5PSIxNDQuNyIgcj0iNC45IiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjE2Mi44IiBjeT0iMTU4LjMiIHI9IjMuMCIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxODQuNCIgY3k9IjEzMC40IiByPSIzLjQiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTM5LjAiIGN5PSIxMzMuNyIgcj0iNi44IiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjE1NS4yIiBjeT0iMTM5LjkiIHI9IjYuNyIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxNzYuNCIgY3k9IjEzNy41IiByPSIxMi41IiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjE1Ni4xIiBjeT0iMTU3LjUiIHI9IjguNCIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyMjYuMSIgY3k9Ijg1LjIiIHI9IjQuMyIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyNDMuMiIgY3k9IjkwLjkiIHI9IjEyLjAiIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjQ4LjgiIGN5PSIxMTguMSIgcj0iMTIuNCIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxOTkuMSIgY3k9IjcxLjEiIHI9IjguNiIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyMzUuNiIgY3k9IjcwLjEiIHI9IjcuNyIgZmlsbD0iI2VjZTFkMCIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyMjEuMiIgY3k9IjkyLjMiIHI9IjMuOSIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyMDYuNCIgY3k9IjgyLjUiIHI9IjExLjIiIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjI3LjIiIGN5PSI4OS45IiByPSIxMS40IiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI1My4xIiBjeT0iNTcuOCIgcj0iOC44IiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI2My4zIiBjeT0iMTA1LjMiIHI9IjguMSIgZmlsbD0iI2VjZTFkMCIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyNTMuOSIgY3k9IjExNy42IiByPSIxMi4zIiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjE3MC4xIiBjeT0iODYuMSIgcj0iNC44IiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIyMC44IiBjeT0iMTA5LjkiIHI9IjUuNSIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyMTkuNCIgY3k9IjEyMy43IiByPSIxMi40IiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI0NC43IiBjeT0iOTQuMSIgcj0iNS40IiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI1Ny43IiBjeT0iNTYuNyIgcj0iNy4yIiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIzNC42IiBjeT0iMTE0LjAiIHI9IjExLjkiIGZpbGw9IiNlY2UxZDAiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjU1LjYiIGN5PSIxMTUuOSIgcj0iMTIuMiIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxNzYuMCIgY3k9Ijc4LjYiIHI9IjQuNCIgZmlsbD0iI2VjZTFkMCIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyMzguOSIgY3k9IjExNi4yIiByPSIxMi4zIiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjE5NS44IiBjeT0iNjUuMSIgcj0iOS4wIiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIzNy4xIiBjeT0iODcuNiIgcj0iNS43IiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIzMC4zIiBjeT0iMTIxLjUiIHI9IjUuNCIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyMjIuMiIgY3k9Ijg3LjUiIHI9IjEyLjkiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjYwLjciIGN5PSIxNzcuNyIgcj0iOC44IiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIyNC44IiBjeT0iMTkzLjYiIHI9IjExLjYiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjc3LjEiIGN5PSIxNTEuNiIgcj0iMy41IiBmaWxsPSIjZWNlMWQwIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI5NS4xIiBjeT0iMTcyLjYiIHI9IjEwLjgiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMzE1LjMiIGN5PSIxODAuNCIgcj0iNS40IiBmaWxsPSIjZWNlMWQwIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI2OC4zIiBjeT0iMTc5LjgiIHI9IjkuMiIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyODIuMSIgY3k9IjE4MS40IiByPSIxMS43IiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI3MC42IiBjeT0iMTk3LjYiIHI9IjExLjAiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMzA3LjIiIGN5PSIyMDkuOCIgcj0iNS45IiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIyNS42IiBjeT0iMTk5LjEiIHI9IjYuNCIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyNTEuOSIgY3k9IjIwNy41IiByPSI3LjkiIGZpbGw9IiNlY2UxZDAiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjM5LjYiIGN5PSIxNjUuNCIgcj0iNy45IiBmaWxsPSIjZWNlMWQwIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI1My40IiBjeT0iMTg3LjQiIHI9IjUuNyIgZmlsbD0iI2EyYTY4YiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIzMDcuMyIgY3k9IjIxNS44IiByPSIxMi4xIiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjIyNi4yIiBjeT0iMTg0LjkiIHI9IjkuOCIgZmlsbD0iI2M0YjlhNSIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyNjcuMCIgY3k9IjE3NC4xIiByPSI5LjgiIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMzE0LjkiIGN5PSIyMTguNSIgcj0iNi40IiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI1MC41IiBjeT0iMTcwLjQiIHI9IjMuNiIgZmlsbD0iI2M0YjlhNSIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyNTEuNCIgY3k9IjE2Ny45IiByPSI0LjgiIGZpbGw9IiNlY2UxZDAiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjg5LjUiIGN5PSIyMjYuMCIgcj0iOS42IiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI5MS45IiBjeT0iMjA1LjMiIHI9IjEyLjIiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjMwLjciIGN5PSIxODAuNyIgcj0iNy42IiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjI3NC4yIiBjeT0iMTYwLjkiIHI9IjQuMSIgZmlsbD0iI2VjZTFkMCIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIyNjYuOSIgY3k9IjE2Ni4yIiByPSIxMC40IiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ijk3LjciIGN5PSIyOTguOSIgcj0iMy41IiBmaWxsPSIjZWNlMWQwIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjExMC43IiBjeT0iMjk1LjkiIHI9IjUuNSIgZmlsbD0iI2M0YjlhNSIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxMjUuNCIgY3k9IjI1Ny43IiByPSI3LjUiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iNTAuNyIgY3k9IjMxOS40IiByPSI0LjEiIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iNDcuOCIgY3k9IjI3NC42IiByPSI4LjYiIGZpbGw9IiNkOWM2YmIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iODcuNyIgY3k9IjMwMS4zIiByPSI3LjIiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iOTguMyIgY3k9IjI2MS4xIiByPSI4LjkiIGZpbGw9IiNlY2UxZDAiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTEwLjUiIGN5PSIyNjMuNyIgcj0iOC40IiBmaWxsPSIjZWNlMWQwIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjY1LjEiIGN5PSIyODQuNyIgcj0iNS41IiBmaWxsPSIjYzRiOWE1IiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjEyNy4wIiBjeT0iMjk2LjQiIHI9IjExLjkiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iNTguMiIgY3k9IjMyNy44IiByPSI2LjEiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMTIwLjIiIGN5PSIyODUuOCIgcj0iNi4wIiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ijk3LjYiIGN5PSIyOTIuMyIgcj0iOS4zIiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ijg1LjkiIGN5PSIyNjIuMiIgcj0iNy45IiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ijk1LjMiIGN5PSIzMjEuNSIgcj0iNS4xIiBmaWxsPSIjYTJhNjhiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9Ijk3LjIiIGN5PSIzMDAuMCIgcj0iOS42IiBmaWxsPSIjZWNlMWQwIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjExMS40IiBjeT0iMzE1LjQiIHI9IjkuMiIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxMTYuNiIgY3k9IjI5NC4yIiByPSI4LjEiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iMjIuOCIgY3k9IjI3OS40IiByPSI2LjIiIGZpbGw9IiNjNGI5YTUiIG9wYWNpdHk9Ii44Ii8+PGNpcmNsZSBjeD0iNzYuMiIgY3k9IjI4MC40IiByPSIxMS42IiBmaWxsPSIjZDljNmJiIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjcxLjkiIGN5PSIyNTkuNSIgcj0iNi40IiBmaWxsPSIjZWNlMWQwIiBvcGFjaXR5PSIuOCIvPjxjaXJjbGUgY3g9IjEyOC4wIiBjeT0iMjc0LjMiIHI9IjcuNCIgZmlsbD0iI2VjZTFkMCIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSI2OC42IiBjeT0iMjkwLjkiIHI9IjMuNCIgZmlsbD0iI2Q5YzZiYiIgb3BhY2l0eT0iLjgiLz48Y2lyY2xlIGN4PSIxMDMuOSIgY3k9IjI2NS40IiByPSI2LjkiIGZpbGw9IiNhMmE2OGIiIG9wYWNpdHk9Ii44Ii8+PHJlY3Qgd2lkdGg9IjEwMDAiIGhlaWdodD0iNjUwIiBmaWx0ZXI9InVybCgjZ3JhaW4pIiBvcGFjaXR5PSIuMDkiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTptdWx0aXBseSIvPjwvc3ZnPg==')"><div class="photo-frame"><img alt="大阪城與櫻花" loading="eager" onerror="this.closest('div.photo-frame').classList.add('photo-failed')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Cherry_Blossoms_of_Osakajo_Castle_(1).jpg/960px-Cherry_Blossoms_of_Osakajo_Castle_(1).jpg"/><div class="photo-credit"><a href="https://commons.wikimedia.org/wiki/File:Cherry_Blossoms_of_Osakajo_Castle_(1).jpg" rel="noopener" target="_blank">實景照片・Mr.ちゅらさん／Wikimedia Commons</a></div></div></div></div><figcaption class="caption flex flex-wrap justify-between gap-2"><span><i>Osaka, spring</i> · <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Cherry_Blossoms_of_Osakajo_Castle_(1).jpg/960px-Cherry_Blossoms_of_Osakajo_Castle_(1).jpg">Wikimedia Commons</a></span><span>34.69° N / 135.50° E</span></figcaption></figure></header>
 <div class="bento grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5">
 <section class="rounded-3xl bg-white ring-1 ring-slate-900/5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-5 sm:p-7 min-w-0 lg:col-span-12 banner" id="trip-dashboard"><div class="banner-inner"><div><div class="overline">TRAVEL PLANNER <span class="meta-dot"></span> 共同旅程</div><div class="countline"><span id="countdown">—</span><span id="countlabel">天後出發</span></div><p class="banner-date">2027.03.27 — 04.05 <span>10 天 9 夜</span></p></div><div class="banner-route"><div><span class="overline">OSAKA</span><strong>大阪 <small>4 晚</small></strong></div><span class="route-line">→</span><div><span class="overline">NAGOYA</span><strong>名古屋 <small>5 晚</small></strong></div></div><div class="banner-flight"><span class="overline"><svg aria-hidden="true" class="dash-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="m2 12 20-8-8 20-3-9-9-3Z"></path><path d="m11 15 5-5"></path></svg> 航班資訊</span><strong>機票待定</strong><p>Ken：3/27（或 3/26）出發・4/5 返台<br/>Jaren：日期與返台機場待定</p><a class="dark-btn" href="#flights">查看航班比較 ↗</a></div></div></section><aside aria-label="近期重要訂票提醒" class="reminder-grid"><a class="reminder-card urgent" href="#hero-ticket"><div class="reminder-label"><span class="status-dot"></span>近期截止・我的英雄學院</div><strong><span>12/2</span> 22:59</strong><div class="reminder-sub">2026年・台灣時間｜第二次抽籤截止</div><div class="reminder-action">代購攻略與售票時間 <span aria-hidden="true">↗</span></div></a><a class="reminder-card planned" href="#ghibli-guide"><div class="reminder-label"><span class="status-dot"></span>預計開賣・吉卜力公園</div><strong><span>2/10</span> 13:00</strong><div class="reminder-sub">2027年・台灣時間｜待正式公告</div><div class="reminder-action">兩日攻略與購票提醒 <span aria-hidden="true">↗</span></div></a></aside>
 <section class="rounded-3xl bg-white ring-1 ring-slate-900/5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-5 sm:p-7 min-w-0 lg:col-span-8 dashboard-card" id="days"><div class="card-heading"><span class="iconbox blue"><svg aria-hidden="true" class="dash-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><rect height="16" rx="3" width="18" x="3" y="5"></rect><path d="M7 3v4m10-4v4M3 10h18"></path></svg></span><div><p class="overline">ITINERARY</p><h2>每日行程</h2></div><span class="subtle">暫定・10 天</span></div><div aria-label="每日行程" class="day-tabs" id="day-tabs" role="tablist"></div><div class="day-panel" id="day-panel" role="tabpanel" tabindex="0"></div><div class="day-nav"><button id="prev-day" type="button">← 前一天</button><button id="next-day" type="button">後一天 →</button></div><details class="full-itinerary"><summary>查看完整十天行程表</summary><div class="table-panel"><div class="table-wrap"><table class="flight-table compact-itinerary"><thead><tr><th>日期</th><th>行程</th><th>住宿</th><th>安排備註</th></tr></thead><tbody><tr class="phase-osaka"><td data-label="日期"><span class="day-date">3/27</span><span class="day-week">六</span></td><td data-label="行程">大阪會合</td><td data-label="住宿"><span class="city-label">大阪</span></td><td data-label="備註">依抵達時間安排；Ken 若 3/26 抵達則多住一晚</td></tr><tr class="phase-osaka"><td data-label="日期"><span class="day-date">3/28</span><span class="day-week">日</span></td><td data-label="行程">AnimeJapan／我的英雄學院展／賞櫻</td><td data-label="住宿"><span class="city-label">大阪</span></td><td data-label="備註">依票券及花況選擇</td></tr><tr class="phase-osaka key-day"><td data-label="日期"><span class="day-date">3/29</span><span class="day-week">一</span></td><td data-label="行程">日本環球影城 USJ</td><td data-label="住宿"><span class="city-label">大阪</span></td><td data-label="備註">預留全天</td></tr><tr class="phase-osaka free-day"><td data-label="日期"><span class="day-date">3/30</span><span class="day-week">二</span></td><td data-label="行程">大阪自由日</td><td data-label="住宿"><span class="city-label">大阪</span></td><td data-label="備註">購物、美術展或賞櫻</td></tr><tr class="phase-transit"><td data-label="日期"><span class="day-date">3/31</span><span class="day-week">三</span></td><td data-label="行程">大阪→名古屋</td><td data-label="住宿"><span class="city-label">名古屋</span></td><td data-label="備註">新幹線約 50–60 分</td></tr><tr class="phase-nagoya key-day"><td data-label="日期"><span class="day-date">4/1</span><span class="day-week">四</span></td><td data-label="行程">吉卜力公園 Day 1</td><td data-label="住宿"><span class="city-label">名古屋</span></td><td data-label="備註">Premium：青春之丘、動動力森林、魔女之谷<br/><a href="#ghibli-guide">兩日攻略與購票提醒</a></td></tr><tr class="phase-nagoya key-day"><td data-label="日期"><span class="day-date">4/2</span><span class="day-week">五</span></td><td data-label="行程">吉卜力公園 Day 2</td><td data-label="住宿"><span class="city-label">名古屋</span></td><td data-label="備註">Standard：大倉庫、魔法之里、魔女之谷補逛<br/><a href="#ghibli-guide">兩日攻略與購票提醒</a></td></tr><tr class="phase-nagoya"><td data-label="日期"><span class="day-date">4/3</span><span class="day-week">六</span></td><td data-label="行程">磁浮鐵道館＋購物</td><td data-label="住宿"><span class="city-label">名古屋</span></td><td data-label="備註">金城埠頭、榮、大須<br/><a href="#inuyama">備選：犬山祭・試樂祭（若選此日，鐵道館需另排）</a></td></tr><tr class="phase-nagoya free-day"><td data-label="日期"><span class="day-date">4/4</span><span class="day-week">日</span></td><td data-label="行程">名古屋自由日</td><td data-label="住宿"><span class="city-label">名古屋</span></td><td data-label="備註">原畫展最後一天；若 Ken 大阪返台早班，考慮提前移動<br/><a href="#inuyama">優先備選：犬山祭・本樂祭（與原畫展擇一或分配時間）</a></td></tr><tr class="phase-end"><td data-label="日期"><span class="day-date">4/5</span><span class="day-week">一</span></td><td data-label="行程">共同旅程結束</td><td data-label="住宿">—</td><td data-label="備註">Ken 返台；Jaren 離開名古屋</td></tr></tbody></table></div></div></details></section>
@@ -372,4 +661,126 @@ function renderDay(i){idx=Math.max(0,Math.min(data.length-1,i));const d=data[idx
 const defs=[['住宿',18000,'#818cf8'],['餐飲',12000,'#22a88c'],['交通',5000,'#38a5e5'],['購物',15000,'#eaa264']];let budget=read('budget',defs.map(x=>[x[1],0]));if(!Array.isArray(budget)||budget.length!==4)budget=defs.map(x=>[x[1],0]);const br=$('budget-rows');defs.forEach((d,i)=>{let row=document.createElement('div');row.className='budget-row';row.innerHTML='<div class="budget-label"><b>'+d[0]+'</b><span id="pct-'+i+'">0%</span></div><div class="budget-track"><i id="bar-'+i+'" style="background:'+d[2]+'"></i></div><div class="budget-inputs"><label>預算 <input type="number" min="0" step="100" aria-label="'+d[0]+'預算" value="'+budget[i][0]+'"></label><label>支出 <input type="number" min="0" step="100" aria-label="'+d[0]+'支出" value="'+budget[i][1]+'"></label></div>';row.querySelectorAll('input').forEach((input,j)=>input.addEventListener('input',()=>{budget[i][j]=Math.max(0,Number(input.value)||0);save('budget',budget);budgetUpdate()}));br.append(row)});function budgetUpdate(){let cap=0,spent=0;budget.forEach(([c,v],i)=>{cap+=c;spent+=v;const pct=c?v/c*100:(v?Infinity:0);$('pct-'+i).textContent=Number.isFinite(pct)?Math.round(pct)+'%':'未設上限';$('bar-'+i).style.width=Math.min(100,pct)+'%';$('pct-'+i).classList.toggle('over',v>c)});$('spent-total').textContent=fmt(spent);$('budget-total').textContent=fmt(cap);$('budget-total-bar').style.width=Math.min(100,cap?spent/cap*100:spent?100:0)+'%';$('budget-total-bar').style.background=spent>cap?'#a44d37':'#3A4D39'}budgetUpdate();
 const items=['護照、入境資料','機票與住宿確認單','信用卡、日圓現金','手機、充電器、行動電源','網路 eSIM／SIM 卡','常用藥品與盥洗用品','春季外套、雨具','舒適步行鞋','購物袋／備用行李空間','旅遊保險資料'];let checked=read('packing',[]);if(!Array.isArray(checked))checked=[];function renderPacking(){const node=$('packing-items');node.innerHTML='';items.forEach((t,i)=>{const l=document.createElement('label');l.className='packing-item';const c=document.createElement('input');c.type='checkbox';c.checked=checked.includes(i);const span=document.createElement('span');span.textContent=t;l.append(c,span);c.onchange=()=>{checked=c.checked?[...new Set([...checked,i])]:checked.filter(j=>j!==i);save('packing',checked);packingProgress()};node.append(l)});packingProgress()}function packingProgress(){$('packing-count').textContent=checked.length+' / '+items.length;$('packing-bar').style.width=checked.length/items.length*100+'%'}renderPacking();$('reset-packing').onclick=()=>{checked=[];save('packing',checked);renderPacking()};
 let tickets=read('tickets',{});const sel=$('ticket-kind');function renderTicket(){const p=$('qr-preview');p.innerHTML='';if(tickets[sel.value]){const image=document.createElement('img');image.src=tickets[sel.value];image.alt='自行匯入的票券圖片';p.append(image);$('ticket-status').textContent='已匯入圖片；請自行核對有效性。';$('ticket-clear').disabled=false;}else{p.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8V3h5m8 0h5v5m0 8v5h-5m-8 0H3v-5"/><rect x="8" y="8" width="8" height="8" rx="2"/></svg><strong>尚未匯入票券</strong><span>取得正式票券後再加入</span>';$('ticket-status').textContent='購票狀態待確認；無可用 QR Code。';$('ticket-clear').disabled=true;}}sel.onchange=renderTicket;renderTicket();$('ticket-upload').onchange=e=>{const f=e.target.files[0];if(!f)return;if(!['image/png','image/jpeg','image/webp'].includes(f.type)||f.size>1500000){$('ticket-status').textContent='請選擇 1.5 MB 以下的 PNG、JPG 或 WebP。';e.target.value='';return}const key=sel.value;const reader=new FileReader();reader.onload=()=>{tickets[key]=reader.result;const ok=save('tickets',tickets);renderTicket();if(!ok)$('ticket-status').textContent='已載入，但本機儲存空間不足，關閉頁面後可能遺失。';};reader.readAsDataURL(f);e.target.value=''};$('ticket-clear').onclick=()=>{delete tickets[sel.value];save('tickets',tickets);renderTicket()};
-})();</script></body></html>
+})();</script>
+<script>
+(()=>{
+  const routeDays=[
+    {date:'3/27',title:'大阪會合',subtitle:'機場進市區與梅田夜間散步',phase:'osaka',summary:'抵達後以最少轉乘方式進市區；晚上以梅田周邊為主，保留彈性。',total:'移動約 95 分',stops:[
+      {key:'kix',time:'07:00',name:'關西機場',desc:'入境、領取網路與交通卡。',mode:'抵達',mins:'—',distance:'—',color:'#93c5fd'},
+      {key:'umeda-hotel',time:'09:10',name:'梅田飯店寄放行李',desc:'先辦理寄放，下午依抵達航班自由安排。',mode:'JR / 南海',mins:'65 分',distance:'53 km',color:'#60a5fa'},
+      {key:'umeda-walk',time:'18:30',name:'梅田晚餐與空中庭園一帶散步',desc:'作為輕鬆會合日，方便旅伴調整節奏。',mode:'步行',mins:'12 分',distance:'850 m',color:'#38bdf8'}]},
+    {date:'3/28',title:'展覽／賞櫻彈性日',subtitle:'依門票與花況切換的城市日',phase:'osaka',summary:'以展覽與賞櫻並行的彈性排法為主，動線維持在大阪市區。',total:'移動約 70 分',stops:[
+      {key:'nakanoshima',time:'09:30',name:'中之島或大阪城公園賞櫻',desc:'先看早上的櫻花與人潮狀況。',mode:'地鐵',mins:'22 分',distance:'6 km',color:'#a78bfa'},
+      {key:'hero-ex',time:'13:00',name:'展覽候選：我的英雄學院／AnimeJapan 備案',desc:'依門票狀況決定是否安排指定場次。',mode:'地鐵',mins:'18 分',distance:'4.2 km',color:'#c084fc'},
+      {key:'shinsaibashi',time:'17:30',name:'心齋橋晚餐與購物',desc:'保留自由購物與晚餐時間。',mode:'步行',mins:'15 分',distance:'1.1 km',color:'#e879f9'}]},
+    {date:'3/29',title:'日本環球影城 USJ',subtitle:'全天主題樂園日',phase:'osaka',summary:'以一整天完整留給 USJ，晚上視體力再回到梅田或難波。',total:'移動約 80 分',stops:[
+      {key:'usj-gate',time:'08:00',name:'USJ 入園',desc:'建議提早抵達，依快速通關與整理券調整順序。',mode:'JR',mins:'28 分',distance:'11 km',color:'#f59e0b'},
+      {key:'usj-core',time:'11:30',name:'園區核心體驗',desc:'任天堂世界、熱門設施與中午用餐。',mode:'園區步行',mins:'—',distance:'—',color:'#fb7185'},
+      {key:'usj-night',time:'19:30',name:'晚間離園',desc:'視閉園時間決定是否回梅田續攤。',mode:'JR',mins:'28 分',distance:'11 km',color:'#f97316'}]},
+    {date:'3/30',title:'大阪自由日',subtitle:'購物、美術展或加碼賞櫻',phase:'osaka',summary:'保留給購物、展覽與晚餐安排，也可補大阪近郊景點。',total:'移動約 55 分',stops:[
+      {key:'namba',time:'10:30',name:'難波／道頓堀',desc:'以美食與購物為主軸。',mode:'地鐵',mins:'16 分',distance:'4.4 km',color:'#fb7185'},
+      {key:'museum-osaka',time:'14:00',name:'美術展候選',desc:'依當期展覽與票券安排選擇。',mode:'地鐵',mins:'19 分',distance:'5 km',color:'#fda4af'},
+      {key:'sakura-evening',time:'18:00',name:'傍晚再看櫻花夜景',desc:'回到公園或河岸附近作為收尾。',mode:'步行',mins:'10 分',distance:'700 m',color:'#fdba74'}]},
+    {date:'3/31',title:'大阪→名古屋',subtitle:'跨城市轉場與入住',phase:'transit',summary:'以最簡單的新幹線轉場為主，入住後可先熟悉榮或名站生活圈。',total:'移動約 150 分',stops:[
+      {key:'shin-osaka',time:'09:00',name:'新大阪站出發',desc:'建議預留購買早餐與月台緩衝。',mode:'JR / 地鐵',mins:'24 分',distance:'7 km',color:'#38bdf8'},
+      {key:'nagoya-sta',time:'10:40',name:'新幹線抵達名古屋',desc:'Nozomi 或 Hikari，車程約 50–60 分。',mode:'新幹線',mins:'55 分',distance:'168 km',color:'#60a5fa'},
+      {key:'sakae',time:'15:00',name:'榮／飯店周邊散步',desc:'入住後先採買與熟悉動線。',mode:'地鐵',mins:'11 分',distance:'3.2 km',color:'#818cf8'}]},
+    {date:'4/1',title:'吉卜力公園 Day 1',subtitle:'Premium 路線',phase:'nagoya',summary:'以 Premium 動線先走青春之丘、動動力森林與魔女之谷。',total:'移動約 140 分',stops:[
+      {key:'fujigaoka',time:'08:00',name:'名古屋市區出發',desc:'從榮／名站前往藤之丘與愛・地球博紀念公園。',mode:'地鐵',mins:'28 分',distance:'11 km',color:'#86efac'},
+      {key:'ghibli-hill',time:'09:30',name:'青春之丘',desc:'早段先走室內空間與排隊點。',mode:'Linimo',mins:'18 分',distance:'8 km',color:'#4ade80'},
+      {key:'ghibli-mononoke',time:'12:30',name:'動動力森林',desc:'中段安排森林區與午餐。',mode:'園區步行',mins:'15 分',distance:'1.2 km',color:'#34d399'},
+      {key:'ghibli-witch',time:'15:30',name:'魔女之谷',desc:'傍晚留給大型場景與商店。',mode:'園區步行',mins:'18 分',distance:'1.5 km',color:'#22c55e'}]},
+    {date:'4/2',title:'吉卜力公園 Day 2',subtitle:'Standard 路線',phase:'nagoya',summary:'補完吉卜力大倉庫與魔法之里，並視體力回到前一天喜歡的區域。',total:'移動約 130 分',stops:[
+      {key:'ghibli-warehouse',time:'09:30',name:'吉卜力大倉庫',desc:'先衝大倉庫室內展區、短片與商店。',mode:'地鐵＋Linimo',mins:'46 分',distance:'19 km',color:'#fde68a'},
+      {key:'ghibli-valley',time:'13:30',name:'魔法之里',desc:'午後轉往較輕鬆的戶外區。',mode:'園區步行',mins:'14 分',distance:'900 m',color:'#facc15'},
+      {key:'ghibli-revisit',time:'16:00',name:'回頭補逛／二刷',desc:'依票種與實際動線補拍與購物。',mode:'園區步行',mins:'10 分',distance:'700 m',color:'#f59e0b'}]},
+    {date:'4/3',title:'磁浮鐵道館＋購物',subtitle:'港區與市中心雙區塊',phase:'nagoya',summary:'上午看鐵道館，下午回到榮／大須一帶購物。',total:'移動約 95 分',stops:[
+      {key:'scmaglev',time:'10:00',name:'磁浮鐵道館',desc:'安排 2–3 小時觀展。',mode:'青波線',mins:'25 分',distance:'15 km',color:'#93c5fd'},
+      {key:'sakae-shop',time:'14:30',name:'榮購物',desc:'百貨與選物集中，晚餐方便。',mode:'青波線＋地鐵',mins:'34 分',distance:'17 km',color:'#60a5fa'},
+      {key:'osu',time:'17:30',name:'大須商店街',desc:'可視體力再補街區散步。',mode:'地鐵',mins:'11 分',distance:'3 km',color:'#3b82f6'}]},
+    {date:'4/4',title:'名古屋自由日',subtitle:'犬山祭／原畫展的分流日',phase:'nagoya',summary:'本日最有變數，可在犬山祭、原畫展最後一天與名古屋市區自由行之間取捨。',total:'移動約 110 分',stops:[
+      {key:'inuyama-castle',time:'09:30',name:'犬山祭（優先備選）',desc:'若選本樂祭，建議提早出發並回避人潮高峰。',mode:'名鐵',mins:'31 分',distance:'27 km',color:'#f9a8d4'},
+      {key:'hero-lastday',time:'13:30',name:'原畫展最後一天備案',desc:'若不去犬山，可把重點放回展覽與市區。',mode:'地鐵',mins:'20 分',distance:'5 km',color:'#f472b6'},
+      {key:'nagoya-evening',time:'18:00',name:'晚餐與最後採買',desc:'把未完成的購物與伴手禮收尾。',mode:'步行',mins:'12 分',distance:'900 m',color:'#ec4899'}]},
+    {date:'4/5',title:'共同旅程結束',subtitle:'返程與後續分流',phase:'transit',summary:'Ken 返台；Jaren 離開名古屋。保留足夠的交通與退房緩衝。',total:'移動約 85 分',stops:[
+      {key:'checkout',time:'08:30',name:'飯店退房',desc:'確認行李與購物品打包。',mode:'步行',mins:'—',distance:'—',color:'#cbd5e1'},
+      {key:'airport-transfer',time:'10:00',name:'前往機場／下一段旅程',desc:'依最終機票決定中部／關西或其他路線。',mode:'名鐵 / 新幹線',mins:'45–65 分',distance:'37–170 km',color:'#94a3b8'},
+      {key:'journey-end',time:'12:30',name:'共同旅程結束',desc:'把共同旅程在此收尾。',mode:'—',mins:'—',distance:'—',color:'#e2e8f0'}]}
+  ];
+  const featured=[
+    {key:'usj-gate',day:2,eyebrow:'Day 03',title:'日本環球影城',sub:'全天主題樂園行程，適合優先鎖定。',meta1:'JR 直達',meta2:'3/29',card:'#f59e0b'},
+    {key:'ghibli-witch',day:5,eyebrow:'Day 06',title:'吉卜力公園 Premium',sub:'以青春之丘、動動力森林與魔女之谷為主。',meta1:'Linimo',meta2:'4/1',card:'#22c55e'},
+    {key:'ghibli-warehouse',day:6,eyebrow:'Day 07',title:'吉卜力大倉庫',sub:'Standard 路線的核心場景與商店。',meta1:'園區步行',meta2:'4/2',card:'#eab308'},
+    {key:'scmaglev',day:7,eyebrow:'Day 08',title:'磁浮鐵道館',sub:'與金城埠頭、榮的購物動線搭配。',meta1:'青波線',meta2:'4/3',card:'#3b82f6'},
+    {key:'inuyama-castle',day:8,eyebrow:'Day 09',title:'犬山祭／犬山城',sub:'作為自由日最重要的備選路線。',meta1:'名鐵',meta2:'4/4',card:'#f472b6'},
+    {key:'sakae-shop',day:7,eyebrow:'Day 08',title:'榮與大須',sub:'回程前的採買與城市散步區。',meta1:'地鐵',meta2:'City Walk',card:'#8b5cf6'},
+    {key:'umeda-walk',day:0,eyebrow:'Day 01',title:'梅田夜間散步',sub:'共同旅程的第一個放鬆節點。',meta1:'步行',meta2:'3/27',card:'#60a5fa'},
+    {key:'nagoya-sta',day:4,eyebrow:'Day 05',title:'大阪→名古屋轉場',sub:'整趟共同旅程最重要的交通銜接。',meta1:'新幹線',meta2:'3/31',card:'#93c5fd'}
+  ];
+  const tabs=document.getElementById('glass-day-tabs');
+  const summary=document.getElementById('glass-day-summary');
+  const list=document.getElementById('glass-timeline');
+  const cards=document.getElementById('spot-cards');
+  if(!tabs||!summary||!list||!cards)return;
+  let activeDay=0, activeKey='';
+  const totalMins=day=>day.stops.reduce((sum,s)=>{const n=parseInt(String(s.mins),10);return sum+(Number.isFinite(n)?n:0)},0);
+  routeDays.forEach((d,i)=>{
+    const b=document.createElement('button');
+    b.type='button'; b.className='glass-day-tab';
+    b.innerHTML=`<b>Day ${String(i+1).padStart(2,'0')}</b><span>${d.date}</span>`;
+    b.addEventListener('click',()=>setDay(i,'',true));
+    tabs.appendChild(b);
+  });
+  featured.forEach(card=>{
+    const el=document.createElement('article');
+    el.className='spot-card';
+    el.style.setProperty('--card',card.card);
+    el.dataset.key=card.key; el.dataset.day=String(card.day);
+    el.innerHTML=`<div class="spot-pill">${card.eyebrow}</div><h3 class="spot-title">${card.title}</h3><p class="spot-sub">${card.sub}</p><div class="spot-foot"><span>${card.meta1}</span><span>${card.meta2}</span></div>`;
+    el.addEventListener('click',()=>setDay(card.day,card.key,true));
+    cards.appendChild(el);
+  });
+  function renderTimeline(){
+    const day=routeDays[activeDay];
+    [...tabs.children].forEach((b,i)=>b.classList.toggle('active',i===activeDay));
+    summary.innerHTML=`<div><span class="tag">${day.phase.toUpperCase()}</span><h3>${day.title}</h3><p>${day.summary}</p></div><div class="day-total"><small>${day.subtitle}</small>${day.total}</div>`;
+    list.innerHTML='';
+    day.stops.forEach((stop,idx)=>{
+      const item=document.createElement('article');
+      const isActive = activeKey ? activeKey===stop.key : idx===0;
+      item.className='timeline-item'+(isActive?' active':'');
+      item.style.setProperty('--spot',stop.color);
+      item.dataset.key=stop.key;
+      item.innerHTML=`<div class="timeline-node"><span class="node-time">${stop.time}</span><span class="node-dot"></span></div><div class="timeline-card"><h4>${stop.name}</h4><p>${stop.desc}</p><div class="timeline-meta"><span>${stop.mode}</span><span>${stop.mins}</span><span>${stop.distance}</span></div></div>`;
+      item.querySelector('.timeline-card').addEventListener('click',()=>{
+        activeKey=stop.key; renderTimeline();
+      });
+      list.appendChild(item);
+    });
+    [...cards.children].forEach(c=>c.classList.toggle('active',Number(c.dataset.day)===activeDay && (!activeKey || c.dataset.key===activeKey)));
+  }
+  function setDay(i,key='',syncExisting=false){
+    activeDay=Math.max(0,Math.min(routeDays.length-1,i));
+    activeKey=key || routeDays[activeDay].stops[0].key;
+    renderTimeline();
+    if(syncExisting){
+      const oldTabs=[...document.querySelectorAll('#day-tabs button')];
+      oldTabs[activeDay]?.click();
+    }
+  }
+  document.getElementById('export-pdf')?.addEventListener('click',()=>window.print());
+  const oldTabs=[...document.querySelectorAll('#day-tabs button')];
+  oldTabs.forEach((b,i)=>b.addEventListener('click',()=>{ activeDay=i; if(!routeDays[i].stops.find(s=>s.key===activeKey)) activeKey=routeDays[i].stops[0].key; renderTimeline(); }));
+  document.getElementById('prev-day')?.addEventListener('click',()=>setTimeout(()=>{
+    const active=oldTabs.findIndex(x=>x.getAttribute('aria-selected')==='true');
+    if(active>-1){activeDay=active; if(!routeDays[active].stops.find(s=>s.key===activeKey)) activeKey=routeDays[active].stops[0].key; renderTimeline();}
+  },0));
+  document.getElementById('next-day')?.addEventListener('click',()=>setTimeout(()=>{
+    const active=oldTabs.findIndex(x=>x.getAttribute('aria-selected')==='true');
+    if(active>-1){activeDay=active; if(!routeDays[active].stops.find(s=>s.key===activeKey)) activeKey=routeDays[active].stops[0].key; renderTimeline();}
+  },0));
+  setDay(0,'',false);
+})();
+</script>
+
+</body></html>
