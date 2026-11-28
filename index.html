@@ -259,7 +259,108 @@ body{background:linear-gradient(160deg,#edf6ff 0,#f6f8fc 28%,#fff4f8 70%,#f6f8fc
 .guide-group .main-drawer>summary{border-left:4px solid var(--section-ink,#3478f6);border-radius:20px!important}.guide-group .section-marker{background:var(--section-ink,#3478f6)!important}.guide-group .drawer-title{color:#19243b!important}.main-drawer>summary:hover{background:var(--section-bg,#e5efff)!important}.dark-btn,.upload-btn,.day-tabs button[aria-selected=true],.option-tabs button[aria-pressed=true],.hg-buttons button[aria-pressed=true]{background:#195dc8!important;color:#fff!important}.day-panel.osaka{background:linear-gradient(135deg,#dcecff,#f1f7ff)!important;color:#19243b!important}.day-panel.nagoya{background:linear-gradient(135deg,#eee5ff,#faf6ff)!important;color:#19243b!important}.day-panel.transit{background:linear-gradient(135deg,#def7f0,#f4fcff)!important;color:#19243b!important}.day-panel :is(h3,p,.day-kicker,.day-stay){color:#19243b!important}.day-tabs button:not([aria-selected=true]){background:#f0f5ff!important;color:#39577e!important}.day-slot{background:#f2f7ff!important;border-radius:12px;padding:8px}.day-slot b{color:#195dc8!important}.text-action,.quick-links a{color:#195dc8!important}.rem-row{background:#fff5e5!important;border-color:#f9dfb5!important}.rem-date{color:#995a10!important}.prep-tile{background:#e9f8f2!important;border-color:#d0eee2!important}#sakura .main-drawer>summary,#sakura .group-heading{background:#ffe5ef!important}#sakura .section-marker{background:#d65587!important}.sakura-card{background:#fff2f6!important;border-color:#f9d7e5!important}.photo-frame img{filter:none!important}.hg-card{box-shadow:0 8px 24px #3156880b}.hg-card:first-child{background:#e4efff!important}.hg-card:nth-child(2){background:#e0f7ea!important}.spring-day-photo{height:clamp(120px,18vw,225px);width:100%;border-radius:16px;object-fit:cover;margin:0 0 14px;display:block}.spring-day-caption{font-size:.72rem;color:#52647d;margin:-10px 0 10px}.spring-day-photo[hidden],.spring-day-caption[hidden]{display:none!important}
 @media(max-width:650px){.group-heading{padding:10px}.dash-top h1{font-size:1.35rem}.spring-day-photo{height:145px}}
 @media print{body{background:white!important}#trip-dashboard{background:#e5efff!important}#trip-dashboard :is(.overline,.banner-date,.banner-date span,.countline,.countline span,.banner-route strong,.banner-route small,.banner-flight strong,.banner-flight p,.route-line){color:#19243b!important}}
-</style></head><body>
+</style><style id="hero-refresh">
+/* ① Hero：大阪城櫻花照片改成滿版背景 */
+#trip-dashboard{min-height:420px;display:flex;align-items:flex-end;padding:36px 36px 30px!important;background:#1d2b3a!important;box-shadow:0 18px 40px #1d2b3a33!important}
+#trip-dashboard .banner-inner{width:100%}
+#trip-dashboard .banner-photo{inset:0!important;width:100%!important;opacity:1!important;-webkit-mask-image:none!important;mask-image:none!important;display:block!important}
+#trip-dashboard .banner-photo .photo-frame{border-radius:0!important;background:linear-gradient(120deg,#2a4a6b,#c97b8e)!important}
+#trip-dashboard .banner-photo img{object-position:center 40%;filter:saturate(1.08)!important;animation:heroZoom 18s ease-out both}
+#trip-dashboard .banner-photo:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(14,22,34,.86) 0%,rgba(14,22,34,.45) 45%,rgba(14,22,34,.12) 100%),linear-gradient(90deg,rgba(14,22,34,.5),transparent 60%)}
+#trip-dashboard .banner-photo .photo-credit{display:block!important;position:absolute;top:14px;right:18px;left:auto!important;bottom:auto!important;background:none!important;z-index:3;font-size:10px;opacity:.75}
+#trip-dashboard .banner-photo .photo-credit a{color:#fff}
+#trip-dashboard .countline>span:first-child{text-shadow:0 4px 24px rgba(0,0,0,.35)}
+#trip-dashboard .banner-flight{background:rgba(255,255,255,.12)!important;border:1px solid rgba(255,255,255,.28)!important;border-radius:18px;padding:16px 18px!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+@keyframes heroZoom{from{transform:scale(1.08)}to{transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){#trip-dashboard .banner-photo img{animation:none}}
+@media(max-width:650px){#trip-dashboard{min-height:520px;padding:24px 20px 22px!important}}
+/* 照片載入失敗時：不顯示「照片可至來源網站查看」幽靈字，保留漸層底 */
+#trip-dashboard .photo-failed:after{display:none!important}
+
+/* ② 「10 天 9 夜」膠囊原本白底白字 */
+#trip-dashboard .banner-date span{background:rgba(255,255,255,.2)!important;border:1px solid rgba(255,255,255,.35)}
+
+/* ③ 手風琴標題原本被擠到右邊 */
+.main-drawer>summary{grid-template-columns:minmax(0,1fr)!important;justify-items:start;text-align:left}
+.main-drawer>summary>.section-marker{display:none}
+.main-drawer>summary .drawer-hint{text-align:left}
+</style>
+<style id="spring-theme">
+/* ===== 春日旅帖主題：和紙米白＋墨色＋櫻粉＋抹茶＋朱紅 ===== */
+:root{--washi:#f6f0e6;--paper:#fffcf6;--sumi:#2b2622;--sumi-2:#5a524a;--muted:#8a7f73;--line:#e8dccb;--shu:#c4553b;--shu-soft:#f8e3da;--sakura:#e59bb0;--sakura-soft:#fbe8ec;--matcha:#5f8257;--matcha-soft:#e8eedd;--ai:#2f4a6d;--ai-soft:#e3e9f1;--kincha:#b07a2a;--kincha-soft:#f6ead2;
+--forest:var(--sumi)!important;--deep:var(--sumi)!important;--sand:var(--washi)!important;--ink:var(--sumi)!important;--accent:var(--shu)!important}
+body{background:var(--washi)!important;color:var(--sumi)!important;background-image:radial-gradient(circle at 12% 8%,#fbe8ec 0,transparent 32%),radial-gradient(circle at 92% 60%,#e8eedd 0,transparent 30%)!important;background-attachment:fixed!important}
+h1,h2,h3,.drawer-title,.countline>span:first-child{font-family:'Noto Serif TC',serif!important}
+
+/* 頁首 */
+.brand-mark{background:var(--shu)!important;border-radius:50%!important}
+.brand h1{letter-spacing:.06em;color:var(--sumi)!important}
+.dash-meta{color:var(--muted)!important}
+.topnav{background:transparent!important;border:0!important;border-top:1px solid var(--line)!important;border-bottom:1px solid var(--line)!important;border-radius:0!important;box-shadow:none!important;justify-content:center}
+.topnav a,.nav-more summary{color:var(--sumi-2)!important;font-weight:600!important}
+.topnav a:hover,.nav-more summary:hover{background:transparent!important;color:var(--shu)!important;box-shadow:inset 0 -2px 0 var(--shu)}
+.nav-more>div{background:var(--paper)!important;border-color:var(--line)!important}
+
+/* 卡片 */
+.dashboard-card,.xcard,.rounded-3xl.bg-white,.main-drawer{background:var(--paper)!important;border:1px solid var(--line)!important;box-shadow:0 1px 0 #fff inset,0 10px 30px rgba(90,70,40,.06)!important}
+.overline{text-decoration:none!important;color:var(--shu)!important;letter-spacing:.18em!important;font-weight:700!important}
+.card-heading h2,.group-heading h2,.xsection-title h2{color:var(--sumi)!important;letter-spacing:.04em}
+.card-heading svg,.card-icon{color:var(--shu)!important}
+.xprogress{background:#efe6d8!important}.xprogress i{background:linear-gradient(90deg,var(--sakura),var(--shu))!important}
+.xcount{color:var(--shu)!important;font-family:'Noto Serif TC',serif}
+.fine{color:var(--muted)!important}
+
+/* 準備進度方塊 */
+.prep-tile{background:#fbf6ee!important;border:1px solid var(--line)!important}
+select,input[type=text],input[type=number],input:not([type]){background:#fff!important;border:1px solid #e3d6c3!important;border-radius:10px!important;color:var(--sumi)!important}
+
+/* 近期重要事項 */
+.reminder-card,.rem-row{background:#fff!important;border:1px solid var(--line)!important;border-left:3px solid var(--shu)!important}
+.rem-row :is(.rem-date,.date-chip),.reminder-card .date-chip{background:var(--shu-soft)!important;color:var(--shu)!important}
+
+/* 每日行程 */
+.day-tabs button:not([aria-selected=true]){background:#f3ebdf!important;color:var(--sumi-2)!important}
+.day-tabs button[aria-selected=true]{background:var(--sumi)!important;color:#fff!important}
+.day-panel.osaka,.day-panel{background:linear-gradient(135deg,var(--sakura-soft),#fff7f2)!important;border:1px solid #f3d3db}
+.day-panel.nagoya{background:linear-gradient(135deg,var(--ai-soft),#f7f9fb)!important;border-color:#d6dfeb}
+.day-panel.transit{background:linear-gradient(135deg,var(--matcha-soft),#fafbf5)!important;border-color:#d9e3cc}
+.day-panel :is(h3,p,.day-kicker,.day-stay){color:var(--sumi)!important}
+.day-panel h3{letter-spacing:.06em}
+.day-slot{background:#fbf6ee!important}
+.day-slot b{color:var(--shu)!important}
+
+/* 按鈕與連結 */
+.dark-btn,.upload-btn,.option-tabs button[aria-pressed=true],.hg-buttons button[aria-pressed=true]{background:var(--sumi)!important;color:#fff!important;border-radius:999px!important}
+.text-action,.quick-links a{color:var(--shu)!important}
+a{color:var(--shu)}
+
+/* 分區標題：去掉色塊，改成細線＋大號碼 */
+.group-heading{background:transparent!important;border-bottom:1px solid var(--line)!important;border-radius:0!important;padding:8px 2px 10px!important}
+.group-number,.group-heading>span:first-child{font-family:Georgia,'Noto Serif TC',serif!important;font-size:1.5rem!important;font-weight:400!important}
+.guide-group:nth-of-type(1){--section-bg:var(--shu-soft);--section-ink:var(--shu)}
+.guide-group.spring-stay{--section-bg:var(--matcha-soft);--section-ink:var(--matcha)}
+.guide-group.spring-picks{--section-bg:var(--sakura-soft);--section-ink:#c0627d}
+.guide-group.spring-booking{--section-bg:var(--kincha-soft);--section-ink:var(--kincha)}
+.guide-group.spring-cost{--section-bg:var(--ai-soft);--section-ink:var(--ai)}
+.guide-group.spring-prep{--section-bg:var(--shu-soft);--section-ink:var(--sumi)}
+.guide-group .main-drawer>summary{border-left:3px solid var(--section-ink)!important}
+.main-drawer>summary:hover{background:var(--section-bg)!important}
+.drawer-title{color:var(--sumi)!important}
+
+/* Hero 疊色改暖墨色、膠囊與按鈕 */
+#trip-dashboard .banner-photo:after{background:linear-gradient(0deg,rgba(32,24,20,.88) 0%,rgba(32,24,20,.4) 48%,rgba(32,24,20,.05) 100%),linear-gradient(90deg,rgba(32,24,20,.45),transparent 60%)!important}
+#trip-dashboard .dark-btn{background:#fff!important;color:var(--sumi)!important}
+#trip-dashboard .overline{color:#ffd9cf!important}
+.guide-group.spring-plan{--section-bg:var(--shu-soft)!important;--section-ink:var(--shu)!important}
+.iconbox{background:var(--shu-soft)!important;color:var(--shu)!important;border:0!important}
+.iconbox.green{background:var(--matcha-soft)!important;color:var(--matcha)!important}
+.iconbox.blue{background:var(--sakura-soft)!important;color:#c0627d!important}
+#qr-preview,.qr-preview{background:#fbf6ee!important;border-color:#e3d6c3!important;color:var(--sumi-2)!important}
+.main-drawer>summary{background:var(--paper)}
+.page-tools button,.day-nav button{background:var(--paper)!important;border:1px solid var(--line)!important;color:var(--sumi-2)!important;border-radius:999px!important}
+.subtle,.subtl{color:var(--muted)!important}
+</style>
+</head><body>
 <main class="shell dashboard-shell"><div class="dash-top flex flex-wrap items-center justify-between gap-3"><div class="brand flex items-center gap-3"><span class="brand-mark"><svg aria-hidden="true" class="dash-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="m2 12 20-8-8 20-3-9-9-3Z"></path><path d="m11 15 5-5"></path></svg></span><h1>2027大阪名古屋之旅</h1></div><span class="dash-meta">JAREN × KEN <span class="meta-dot"></span> 2027 春季</span></div><nav aria-label="章節導覽" class="topnav"><a href="#days">每日行程</a><a href="#ghibli-guide">吉卜力</a><a href="#lodging">住宿</a><a href="#flights">機票</a><a href="#tickets">訂票</a><a href="#picks">景點</a><a href="#anime">動漫展</a><a href="#arts">美術展</a><details class="nav-more"><summary>更多</summary><div><a href="#inuyama">犬山祭</a><a href="#shiga">滋賀備選</a><a href="#fares">交通費</a><a href="#archive">歷史查價</a><a href="#checklist">出發前確認</a><a href="#flightdecisions">費用試算</a><a href="#watch">待確認展覽</a><a href="#budget-dashboard">分類預算</a><a href="#packing">行李打包</a><a href="#prep-progress">準備進度</a><a href="#spot-map">景點地圖</a><a href="#sakura">賞櫻</a></div></details></nav>
 <div class="bento grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5">
 <section class="rounded-3xl bg-white ring-1 ring-slate-900/5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-5 sm:p-7 min-w-0 lg:col-span-12 banner" id="trip-dashboard"><div class="banner-inner"><div><div class="overline">TRAVEL PLANNER <span class="meta-dot"></span> 共同旅程</div><div class="countline"><span id="countdown">—</span><span id="countlabel">天後出發</span></div><p class="banner-date">2027.03.27 — 04.05 <span>10 天 9 夜</span></p></div><div class="banner-route"><div><span class="overline">OSAKA</span><strong>大阪 <small>4 晚</small></strong></div><span class="route-line">→</span><div><span class="overline">NAGOYA</span><strong>名古屋 <small>5 晚</small></strong></div></div><div class="banner-flight"><span class="overline"><svg aria-hidden="true" class="dash-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="m2 12 20-8-8 20-3-9-9-3Z"></path><path d="m11 15 5-5"></path></svg> 航班資訊</span><strong>機票待定</strong><p>Ken：3/27（或 3/26）出發・4/5 返台<br/>Jaren：日期與返台機場待定</p><a class="dark-btn" href="#flights">查看航班比較 ↗</a></div></div><div class="banner-photo"><div class="photo-frame"><img alt="大阪城與櫻花" loading="eager" onerror="this.closest('div.photo-frame').classList.add('photo-failed')" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Cherry_Blossoms_of_Osakajo_Castle_(1).jpg/960px-Cherry_Blossoms_of_Osakajo_Castle_(1).jpg"/><div class="photo-credit"><a href="https://commons.wikimedia.org/wiki/File:Cherry_Blossoms_of_Osakajo_Castle_(1).jpg" rel="noopener" target="_blank">實景照片・Mr.ちゅらさん／Wikimedia Commons</a></div></div></div></section><section class="rounded-3xl bg-white dashboard-card xcard xwide" id="prep-progress"><div class="card-heading"><div><p class="overline">TRIP READINESS</p><h2>旅行準備進度</h2></div><span class="xcount" id="prep-count">0 / 10</span></div><div class="xprogress"><i id="prep-bar"></i></div><div class="prep-grid" id="prep-items"></div><p class="fine">選擇每個項目的進度，只有「已確認」計入完成數。資料僅存於這個瀏覽器，不會同步給旅伴。</p></section><section class="rounded-3xl bg-white dashboard-card xcard xwide" id="dynamic-reminders"><div class="card-heading"><div><p class="overline">UP NEXT</p><h2>近期重要事項</h2></div><button aria-expanded="false" class="quiet-btn" id="show-reminders" type="button">查看全部</button></div><div class="rem-list" id="reminder-list"></div><p class="fine">依台灣時間排序；過期未完成仍保留。完成後顯示下一項，條件式提醒須依實際訂單確認。此區不會發送系統通知。</p></section>
