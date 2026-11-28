@@ -360,6 +360,55 @@ a{color:var(--shu)}
 .page-tools button,.day-nav button{background:var(--paper)!important;border:1px solid var(--line)!important;color:var(--sumi-2)!important;border-radius:999px!important}
 .subtle,.subtl{color:var(--muted)!important}
 </style>
+<style id="picks-cards">
+/* ===== 03 景點與展覽：改成封面卡片牆 ===== */
+.spring-picks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-flow:row dense;gap:16px;align-items:start}
+.spring-picks>.group-heading{grid-column:1/-1;margin-bottom:2px}
+.spring-picks>.chapter{margin:0!important;min-width:0}
+.spring-picks>.chapter.is-open,.spring-picks>.chapter:has(>details[open]){grid-column:1/-1}
+.spring-picks .main-drawer{border:0!important;border-radius:20px!important;overflow:hidden;background:var(--paper)!important}
+.spring-picks .main-drawer>summary{display:flex!important;flex-direction:column;justify-content:flex-end;align-items:flex-start;min-height:230px;padding:20px 22px!important;border:0!important;border-radius:20px!important;position:relative;isolation:isolate;overflow:hidden;background:var(--sumi)!important;transition:transform .25s ease,box-shadow .25s ease}
+.spring-picks .main-drawer:not([open])>summary:hover{transform:translateY(-3px);box-shadow:0 16px 32px rgba(60,40,20,.18)}
+.spring-picks .main-drawer[open]>summary{min-height:150px;border-radius:20px 20px 0 0!important}
+.spring-picks .pick-cover{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform .6s ease}
+.spring-picks .main-drawer:not([open])>summary:hover .pick-cover{transform:scale(1.06)}
+.spring-picks .main-drawer>summary:before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(32,24,20,.85) 0%,rgba(32,24,20,.35) 55%,rgba(32,24,20,.05) 100%)}
+.spring-picks .main-drawer>summary .drawer-title{color:#fff!important;font-size:1.35rem!important;letter-spacing:.06em;text-shadow:0 2px 12px rgba(0,0,0,.3)}
+.spring-picks .main-drawer>summary .drawer-hint{color:rgba(255,255,255,.85)!important;font-size:.8rem!important;margin-top:4px}
+.spring-picks .main-drawer>summary:after{border-color:#fff!important;z-index:2;top:26px!important;right:24px!important;transform:rotate(45deg)!important}
+.spring-picks .main-drawer[open]>summary:after{transform:rotate(225deg)!important;top:30px!important}
+.spring-picks .pick-tag{position:absolute;top:16px;left:18px;font-size:10px;letter-spacing:.18em;font-weight:700;color:#fff;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:3px 9px;border-radius:999px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+/* 沒有照片的兩張：用圖案當封面 */
+#sakura .pick-cover{background:radial-gradient(circle at 20% 30%,#fff 0 3px,transparent 4px),radial-gradient(circle at 70% 20%,#fff 0 2px,transparent 3px),radial-gradient(circle at 85% 70%,#fff 0 3px,transparent 4px),radial-gradient(circle at 40% 80%,#fff 0 2px,transparent 3px),radial-gradient(circle at 30% 40%,#f7b6c8,transparent 45%),radial-gradient(circle at 75% 60%,#e98aa6,transparent 50%),linear-gradient(135deg,#f4c6d3,#c9607f)!important;background-size:120px 120px,90px 90px,140px 140px,110px 110px,100% 100%,100% 100%,100% 100%!important}
+#spot-map .pick-cover{background:linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px) 0 0/28px 28px,linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px) 0 0/28px 28px,radial-gradient(circle at 65% 40%,#d8e4c6,transparent 40%),linear-gradient(135deg,#7d9a6f,#3f5b3b)!important}
+#sakura .main-drawer>summary,#sakura .main-drawer{background:var(--sumi)!important}
+.spring-picks .drawer-body{background:var(--paper)}
+
+/* 卡片裡面的景點小卡：寬螢幕三欄、照片矮一點 */
+.spring-picks .spot-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))!important;gap:16px!important}
+.spring-picks .spot-card{border:1px solid var(--line)!important;border-radius:16px!important;overflow:hidden;background:#fff!important;transition:transform .25s ease,box-shadow .25s ease}
+.spring-picks .spot-card:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(60,40,20,.12)}
+.spring-picks .spot-card .photo-frame{height:170px!important}
+.spring-picks .spot-card h3,.spring-picks .spot-card h4{font-family:'Noto Serif TC',serif!important;color:var(--sumi)!important}
+
+@media(max-width:960px){.spring-picks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.spring-picks{gap:10px}.spring-picks .main-drawer>summary{min-height:170px;padding:14px!important}.spring-picks .main-drawer>summary .drawer-title{font-size:1.08rem!important}.spring-picks .main-drawer>summary .drawer-hint{font-size:.7rem!important}.spring-picks .pick-tag{top:12px;left:12px;font-size:9px}.spring-picks .main-drawer>summary:after{top:18px!important;right:16px!important}}
+</style>
+<script id="picks-cards-js">
+document.addEventListener('DOMContentLoaded',function(){
+  var tags={anime:'ANIME',arts:'ART',picks:'SIGHTS',shiga:'SHIGA','spot-map':'MAP',sakura:'SAKURA'};
+  document.querySelectorAll('.spring-picks>.chapter').forEach(function(sec){
+    var d=sec.querySelector(':scope>details.main-drawer'); if(!d) return;
+    var s=d.querySelector(':scope>summary'); if(!s||s.querySelector('.pick-cover')) return;
+    var cover=document.createElement('span'); cover.className='pick-cover'; cover.setAttribute('aria-hidden','true');
+    var img=sec.querySelector('.drawer-body img[src^="http"]');
+    if(img) cover.style.backgroundImage='url("'+img.getAttribute('src').replace(/&amp;/g,'&')+'")';
+    s.prepend(cover);
+    if(tags[sec.id]){var t=document.createElement('span');t.className='pick-tag';t.textContent=tags[sec.id];s.prepend(t);}
+    var sync=function(){sec.classList.toggle('is-open',d.open)}; sync(); d.addEventListener('toggle',sync);
+  });
+});
+</script>
 </head><body>
 <main class="shell dashboard-shell"><div class="dash-top flex flex-wrap items-center justify-between gap-3"><div class="brand flex items-center gap-3"><span class="brand-mark"><svg aria-hidden="true" class="dash-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="m2 12 20-8-8 20-3-9-9-3Z"></path><path d="m11 15 5-5"></path></svg></span><h1>2027大阪名古屋之旅</h1></div><span class="dash-meta">JAREN × KEN <span class="meta-dot"></span> 2027 春季</span></div><nav aria-label="章節導覽" class="topnav"><a href="#days">每日行程</a><a href="#ghibli-guide">吉卜力</a><a href="#lodging">住宿</a><a href="#flights">機票</a><a href="#tickets">訂票</a><a href="#picks">景點</a><a href="#anime">動漫展</a><a href="#arts">美術展</a><details class="nav-more"><summary>更多</summary><div><a href="#inuyama">犬山祭</a><a href="#shiga">滋賀備選</a><a href="#fares">交通費</a><a href="#archive">歷史查價</a><a href="#checklist">出發前確認</a><a href="#flightdecisions">費用試算</a><a href="#watch">待確認展覽</a><a href="#budget-dashboard">分類預算</a><a href="#packing">行李打包</a><a href="#prep-progress">準備進度</a><a href="#spot-map">景點地圖</a><a href="#sakura">賞櫻</a></div></details></nav>
 <div class="bento grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5">
