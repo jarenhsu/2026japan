@@ -409,6 +409,67 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 });
 </script>
+<style id="icon-cards">
+/* ===== 01 / 02 / 04 / 05：圖示卡片 ===== */
+.spring-stay,.spring-booking,.spring-cost{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-flow:row dense;gap:14px;align-items:start}
+.spring-booking{grid-template-columns:repeat(2,minmax(0,1fr))}
+.spring-stay>.group-heading,.spring-booking>.group-heading,.spring-cost>.group-heading{grid-column:1/-1}
+:is(.spring-stay,.spring-booking,.spring-cost)>.chapter{margin:0!important;min-width:0}
+:is(.spring-stay,.spring-booking,.spring-cost)>.chapter.is-open,:is(.spring-stay,.spring-booking,.spring-cost)>.chapter:has(>details[open]){grid-column:1/-1}
+:is(.spring-stay,.spring-booking,.spring-cost) .main-drawer{border-radius:18px!important;overflow:hidden}
+:is(.spring-stay,.spring-booking,.spring-cost) .main-drawer>summary{display:grid!important;grid-template-columns:52px minmax(0,1fr)!important;grid-template-rows:auto auto;column-gap:14px!important;row-gap:2px!important;align-items:center;justify-items:start;min-height:104px;padding:18px 44px 18px 18px!important;border-left:0!important;border-radius:18px!important;transition:transform .2s ease,box-shadow .2s ease}
+:is(.spring-stay,.spring-booking,.spring-cost) .main-drawer:not([open])>summary:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(60,40,20,.1);background:var(--paper)!important}
+:is(.spring-stay,.spring-booking,.spring-cost) .main-drawer[open]>summary{border-radius:18px 18px 0 0!important;background:var(--section-bg)!important}
+.card-ico{grid-row:1/3;width:52px;height:52px;border-radius:15px;display:grid;place-items:center;background:var(--section-bg);color:var(--section-ink)}
+.card-ico svg{width:24px;height:24px}
+:is(.spring-stay,.spring-booking,.spring-cost) .main-drawer>summary .drawer-title{align-self:end;font-size:1.08rem!important}
+:is(.spring-stay,.spring-booking,.spring-cost) .main-drawer>summary .drawer-hint{align-self:start}
+
+/* 01 吉卜力：主打大橫幅 */
+#ghibli-guide .main-drawer{border:0!important;border-radius:22px!important;overflow:hidden}
+#ghibli-guide .main-drawer>summary{display:flex!important;flex-direction:column;justify-content:flex-end;align-items:flex-start;min-height:240px;padding:26px 30px!important;border:0!important;border-radius:22px!important;position:relative;overflow:hidden;isolation:isolate;
+background:
+ url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 240' preserveAspectRatio='none'%3E%3Cpath d='M0 170 C200 120 330 150 480 135 S800 90 960 120 1120 140 1200 115 V240 H0Z' fill='%23869f6b'/%3E%3Cpath d='M0 200 C180 175 360 205 560 180 S900 160 1060 185 1160 190 1200 180 V240 H0Z' fill='%234f6b45'/%3E%3C/svg%3E") bottom/100% 70% no-repeat,
+ radial-gradient(ellipse 120px 40px at 18% 30%,rgba(255,255,255,.85),transparent 70%),
+ radial-gradient(ellipse 160px 46px at 72% 22%,rgba(255,255,255,.75),transparent 70%),
+ radial-gradient(ellipse 90px 30px at 88% 40%,rgba(255,255,255,.6),transparent 70%),
+ linear-gradient(180deg,#9cc6e0 0%,#cfe5ec 55%,#e9f0dc 100%)!important}
+#ghibli-guide .main-drawer>summary:before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(30,44,28,.55),transparent 65%)}
+#ghibli-guide .main-drawer[open]>summary{min-height:170px;border-radius:22px 22px 0 0!important}
+#ghibli-guide .drawer-title{color:#fff!important;font-size:clamp(1.5rem,3vw,2.1rem)!important;letter-spacing:.08em;text-shadow:0 2px 14px rgba(0,0,0,.25)}
+#ghibli-guide .main-drawer>summary .drawer-hint{color:rgba(255,255,255,.92)!important;font-size:.85rem!important;margin-top:4px}
+#ghibli-guide .main-drawer>summary:after{border-color:#fff!important;top:30px!important;right:30px!important}
+#ghibli-guide .feature-tag{position:absolute;top:22px;left:28px;font-size:10px;letter-spacing:.2em;font-weight:700;color:#fff;background:var(--shu);padding:4px 11px;border-radius:999px}
+
+@media(max-width:960px){.spring-stay,.spring-cost{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.spring-stay,.spring-booking,.spring-cost{grid-template-columns:1fr;gap:10px}
+ :is(.spring-stay,.spring-booking,.spring-cost) .main-drawer>summary{min-height:84px;grid-template-columns:44px minmax(0,1fr)!important;padding:14px 40px 14px 14px!important}
+ .card-ico{width:44px;height:44px;border-radius:13px}.card-ico svg{width:21px;height:21px}
+ #ghibli-guide .main-drawer>summary{min-height:200px;padding:20px!important}#ghibli-guide .feature-tag{top:16px;left:18px}#ghibli-guide .main-drawer>summary:after{top:22px!important;right:20px!important}}
+</style>
+<script id="icon-cards-js">
+document.addEventListener('DOMContentLoaded',function(){
+  var P={
+    lodging:'<path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M12 4v6"/><path d="M2 17h20"/>',
+    flights:'<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>',
+    fares:'<rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 11h16M12 3v8M8 21l2-4M16 21l-2-4"/>',
+    tickets:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18M9 15.5l2 2 4-4"/>',
+    checklist:'<path d="M3 5l2 2 3-3M3 12l2 2 3-3M3 19l2 2 3-3"/><path d="M12 6h9M12 13h9M12 20h9"/>',
+    archive:'<path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/>',
+    flightdecisions:'<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/>',
+    watch:'<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>'
+  };
+  document.querySelectorAll('.spring-stay>.chapter,.spring-booking>.chapter,.spring-cost>.chapter').forEach(function(sec){
+    var d=sec.querySelector(':scope>details.main-drawer'); if(!d) return;
+    var s=d.querySelector(':scope>summary');
+    if(P[sec.id]&&!s.querySelector('.card-ico')){var i=document.createElement('span');i.className='card-ico';i.setAttribute('aria-hidden','true');
+      i.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+P[sec.id]+'</svg>';s.prepend(i);}
+    var sync=function(){sec.classList.toggle('is-open',d.open)};sync();d.addEventListener('toggle',sync);
+  });
+  var g=document.querySelector('#ghibli-guide>details>summary');
+  if(g&&!g.querySelector('.feature-tag')){var t=document.createElement('span');t.className='feature-tag';t.textContent='MUST GO';g.prepend(t);}
+});
+</script>
 </head><body>
 <main class="shell dashboard-shell"><div class="dash-top flex flex-wrap items-center justify-between gap-3"><div class="brand flex items-center gap-3"><span class="brand-mark"><svg aria-hidden="true" class="dash-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="m2 12 20-8-8 20-3-9-9-3Z"></path><path d="m11 15 5-5"></path></svg></span><h1>2027大阪名古屋之旅</h1></div><span class="dash-meta">JAREN × KEN <span class="meta-dot"></span> 2027 春季</span></div><nav aria-label="章節導覽" class="topnav"><a href="#days">每日行程</a><a href="#ghibli-guide">吉卜力</a><a href="#lodging">住宿</a><a href="#flights">機票</a><a href="#tickets">訂票</a><a href="#picks">景點</a><a href="#anime">動漫展</a><a href="#arts">美術展</a><details class="nav-more"><summary>更多</summary><div><a href="#inuyama">犬山祭</a><a href="#shiga">滋賀備選</a><a href="#fares">交通費</a><a href="#archive">歷史查價</a><a href="#checklist">出發前確認</a><a href="#flightdecisions">費用試算</a><a href="#watch">待確認展覽</a><a href="#budget-dashboard">分類預算</a><a href="#packing">行李打包</a><a href="#prep-progress">準備進度</a><a href="#spot-map">景點地圖</a><a href="#sakura">賞櫻</a></div></details></nav>
 <div class="bento grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5">
